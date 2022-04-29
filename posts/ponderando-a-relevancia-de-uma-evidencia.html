@@ -1,0 +1,1423 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="shortcut icon" type="image/png" href="/icon.png" />
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@vepo">
+  <meta name="twitter:creator" content="@vepo">
+  <meta name="google-site-verification" content="xw_kgncLhv22qVjTIPi7adALZre8FIHY02-DGCuYuZ4" />
+  
+  <!-- SEO stuff -->
+  
+  <title>Pensamento Crítico: Ponderando a relevância de uma evidência</title>
+  <meta property="og:title" content="Pensamento Crítico: Ponderando a relevância de uma evidência" />
+  <meta name="twitter:title" content="Pensamento Crítico: Ponderando a relevância de uma evidência">
+  
+
+
+  
+  <meta name="description" content="Qual a relevância de uma evidência? Como podemos fazer para avaliar se ela impacta ou não no nosso julgamento?" />
+  <meta property="og:description" content="Qual a relevância de uma evidência? Como podemos fazer para avaliar se ela impacta ou não no nosso julgamento?" />
+  <meta name="twitter:description" content="Qual a relevância de uma evidência? Como podemos fazer para avaliar se ela impacta ou não no nosso julgamento?">
+  
+
+  
+  <meta name="keywords" content="Filosofia, Pensamento Crítico, Evidências">
+  
+
+  <link rel="canonical" href="https://vepo.github.io/posts/ponderando-a-relevancia-de-uma-evidencia" />
+  <meta property="og:url" content="https://vepo.github.io/posts/ponderando-a-relevancia-de-uma-evidencia" />
+  <meta name="twitter:url" content="https://vepo.github.io/posts/ponderando-a-relevancia-de-uma-evidencia">
+
+  <meta property="og:site_name" content="Notas do dia a dia de um engenheiro de software" />
+
+  
+  <meta property="og:image" content="https://vepo.github.io/assets/images/filosofia.jpg" />
+  <meta name="twitter:image" content="https://vepo.github.io/assets/images/filosofia.jpg">
+  
+
+  
+  <!-- if it's an article -->
+  <meta property="og:type" content="article" />
+  
+  <meta property="article:published_time" content="2021-11-10T09:04:00+00:00" />
+  <meta property="article:modified_time" content="2021-11-10T09:04:00+00:00" />
+  
+
+  <meta content="https://www.linkedin.com/in/victorosorio/" property="article:author">
+
+  
+  
+  
+
+  
+  
+  <meta content="Filosofia" property="article:tag">
+  
+  <meta content="Pensamento Crítico" property="article:tag">
+  
+  <meta content="Evidências" property="article:tag">
+  
+  
+
+  <script type="application/ld+json">
+    {
+      "@context": "http://schema.org",
+      "@type": "BlogPosting",
+      "headline": "Ponderando a relevância de uma evidência",
+      "datePublished": "2021-11-10T09:04:00+00:00",
+      
+      "description": "Qual a relevância de uma evidência? Como podemos fazer para avaliar se ela impacta ou não no nosso julgamento?",
+      
+      
+      "url": "https://vepo.github.io/posts/ponderando-a-relevancia-de-uma-evidencia"
+    }
+  </script>
+
+  
+
+  <link rel="author" href="https://www.linkedin.com/in/victorosorio/" />
+
+  <!-- End SEO stuff -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+  <link href="/assets/thirdy-party/fontawesome/css/all.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="/assets/css/main.css" />
+  <link href="/assets/css/syntax.css" rel="stylesheet">
+  
+  <script src="/assets/js/jquery.min.js"></script>
+  <script src="/assets/thirdy-party/fontawesome/js/all.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj" crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <div class="d-flex">
+        <div class="menu">
+        <script async src="/assets/js/menu.js"></script>
+<div class="enabler">
+	<li class="nav-item">
+		<a class="nav-link" aria-current="page" href="/">
+			Conteúdo&nbsp;<i class="fa fa-fist-raised"></i>
+		</a>
+	</li>
+</div>
+<div class="nav flex-column">
+	<li class="nav-item">
+		<a class="nav-link" aria-current="page" href="/">
+			Victor Osório&nbsp;<i class="fa fa-fist-raised home"></i>
+		</a>
+	</li>
+	
+		
+		<li class="nav-item">
+			<a class="nav-link" aria-current="page" href="#" 
+			   data-bs-toggle="collapse" data-bs-target="#container-collapse-pet-projects" 
+			   aria-expanded="false" aria-controls="container-collapse-pet-projects" >Pet Projects</a>
+			<div class="collapse submenu" id="container-collapse-pet-projects">
+				
+				<a class="nav-link" aria-current="page" href="/projects/csv-viewer">CSV Viewer</a>
+				
+				<a class="nav-link" aria-current="page" href="/projects/plain-test">Plain Test</a>
+				
+				<a class="nav-link" aria-current="page" href="/projects/kafka-tool">Kafka Tool</a>
+				
+			</div>
+		</li>		
+		
+	
+		
+		<li class="nav-item">
+			<a class="nav-link" aria-current="page" href="#" 
+			   data-bs-toggle="collapse" data-bs-target="#container-collapse-apresentações" 
+			   aria-expanded="false" aria-controls="container-collapse-apresentações" >Apresentações</a>
+			<div class="collapse submenu" id="container-collapse-apresentações">
+				
+				<a class="nav-link" aria-current="page" href="/presentations/2020-03-26-sou-java-kafka">Kafka: Uma introdução para Desenvolvedores e Arquitetos</a>
+				
+				<a class="nav-link" aria-current="page" href="/presentations/2019-09-14-sou-java-cdi">Usando Java CDI em projetos Jakarta EE ou Microprofile</a>
+				
+				<a class="nav-link" aria-current="page" href="/presentations/2021-08-26-a-filosofia-do-design-de-codigo">A Filosofia do Design de Código</a>
+				
+				<a class="nav-link" aria-current="page" href="/presentations/2021-06-10-diversidade-cultural">Diversidade Cultural? E isso importa?</a>
+				
+			</div>
+		</li>		
+		
+	
+		
+		<li class="nav-item">
+			<a class="nav-link" aria-current="page" href="/">Posts</a>
+		</li>
+		
+	
+		
+		<li class="nav-item">
+			<a class="nav-link" aria-current="page" href="/tags">Tags</a>
+		</li>
+		
+	
+		
+		<li class="nav-item">
+			<a class="nav-link" aria-current="page" href="/series">Séries</a>
+		</li>
+		
+	
+		
+		<li class="nav-item">
+			<a class="nav-link" aria-current="page" href="/about">Sobre</a>
+		</li>
+		
+	
+		
+		<li class="nav-item">
+			<a class="nav-link" aria-current="page" href="/books">Livros Recomendados</a>
+		</li>
+		
+	
+		
+		<li class="nav-item">
+			<a class="nav-link" aria-current="page" href="#" 
+			   data-bs-toggle="collapse" data-bs-target="#container-collapse-redes-sociais" 
+			   aria-expanded="false" aria-controls="container-collapse-redes-sociais" >Redes Sociais</a>
+			<div class="collapse submenu" id="container-collapse-redes-sociais">
+				
+				<a class="nav-link" aria-current="page" href="http://github.com/vepo">GitHub</a>
+				
+				<a class="nav-link" aria-current="page" href="http://www.linkedin.com/in/victorosorio">LinkedIn</a>
+				
+				<a class="nav-link" aria-current="page" href="https://twitter.com/vepo">Twitter</a>
+				
+			</div>
+		</li>		
+		
+	
+	<li class="nav-item">
+		<a class="nav-link" aria-current="page" href="https://twitter.com/vepo">
+			<i class="fab fa-twitter"></i> @vepo
+		</a>
+	</li>
+</div>
+<div align="center">
+	<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8088229614848913" crossorigin="anonymous"></script>
+	<!-- Homepage Leaderboard -->
+	<ins class="adsbygoogle"
+		 style="display:inline-block;width:168px;height:90px"
+		 data-ad-client="ca-pub-8088229614848913"
+	     data-ad-slot="1234567890"></ins>
+	<script>
+		(adsbygoogle = window.adsbygoogle || []).push({});
+	</script>
+</div>
+        </div>
+        
+        
+        <div class="flex-grow-1">
+            <div class="container post">
+                <div class="title">
+    
+    <h1 class="serie-title">
+        Pensamento Crítico
+    </h1>
+    <h2>
+        Ponderando a relevância de uma evidência
+    </h2>
+    
+</div>
+<div class="cover-image">
+    
+    <img alt="Ponderando a relevância de uma evidência" src="/assets/images/filosofia.jpg" class="img-responsive" />
+    
+</div>
+                
+                <p>
+                    
+                    <strong>
+                        <time datetime="2021-11-10T09:04:00+00:00">
+                            November 10, 2021
+                        </time>
+                    </strong> 
+                    
+                </p>
+                <div class="tag-container">
+                    
+                    <a class="label label-default filosofia" href="/tags/#filosofia">Filosofia</a> 
+                    
+                    <a class="label label-default pensamento-crítico" href="/tags/#pensamento-crítico">Pensamento Crítico</a> 
+                    
+                    <a class="label label-default evidências" href="/tags/#evidências">Evidências</a> 
+                    
+                </div>
+                    
+                    
+                <hr> 
+                
+                
+<div class="series">
+    <div class="serie-contents">
+        
+        <h2>
+            Pensamento Crítico<br/>
+            <span class="description">(série de 3 partes)</span>
+        </h2>
+        
+            
+            <a href="/posts/um-pouco-de-pensamento-critico">
+                <div class="serie-article">Um pouco de Pensamento Crítico</div>
+            </a>
+            
+        
+            
+            <a href="/posts/determinando-a-confiabilidade-de-uma-evidencia">
+                <div class="serie-article">Determinando a Confiabilidade de uma evidência</div>
+            </a>
+            
+        
+            
+            <div class="serie-article selected">Ponderando a relevância de uma evidência</div>
+            
+        
+    </div>
+</div>
+
+                <article>
+                    <p>O que é relevância? Relevância é o peso que uma evidência tem para apoiar ou rejeitar questões importantes.</p>
+
+<p>Algumas evidências são importantes para alguns contextos e totalmente irrelevantes para outros. Vamos supor
+que estamos contratando um desenvolvedor, seria relevante se soubessemos que ele é tímido? NÃO! Mas e se 
+na posição que ele está sendo cotado existe a necessidade de fazer palestras e apresentações, um 
+desenvolvedor tímido poderia atuar? Poderia, mas ele não se sentiria confortavel e isso provavelmente 
+afetaria a performance dele. Ele poderia muito bem trabalhar em qualquer outra posição na empresa, ou 
+mesmo atuar com conjunto com outro desenvolvedor que se sinta a vontade para palestrar.</p>
+
+<p>Então se formos exposto a uma evidência dessas, como proceder? Existe algum método para determinarmos 
+se uma evidência é relavente ou não?</p>
+
+<p>A resposta é sim. Devemos:</p>
+
+<ol>
+  <li>Procurar por falácias lógicas</li>
+  <li>Fazer perguntas iniciadas por “como”</li>
+</ol>
+
+<p>Se estamos procurando um desenvolvedor e surge um argumento que ele é tímido, isso é uma falácia chamada 
+<strong>Ad Hominem</strong>. Ela acontece quando deixamos de discutir um argumento e vamos atacar um o portador do 
+argumento. No caso, ser tímido não afeta a qualidade da pessoa como desenvolvedor. Mas e se surgir o 
+argumento “quem indicou foi o Victor, ele não é um bom desenvolvedor”? Essa também é um argumento “Ad Hominem”,
+estamos deixando de avaliar a pessoa indicada para validar uma suposta característica de quem o indicou.</p>
+
+<p><img src="/assets/images/filosofia/ad-homine.gif" alt="Tirinha sobre Ad Hominem" /></p>
+
+<p>Conhecer as falácias lógicas é muito importante para termos um pensamento crítico, elas podem nos livrar de 
+armadilhas de pensamento que nos são imposta até mesmo pelo senso comum. Em muitos casos falácias são usadas
+não por maldade, mas culturalmente. Se a pessoa A é ineficiente e a pessoa B é amiga da A, logo a pessoa B 
+é ineficiente. É válido esse argumento? Não! Essa é a Falácia da Associação. Existem inúmeras, mas podemos 
+posso enumerar outras importantes como a falácia da composição ou da divisão ou o apelo ao ridículo.</p>
+
+<p>Por fim, fazer perguntas usando “como” pode nos ajudar a superar a irrelevância de uma evidência. Vamos supor
+que temos a evidência que nosso desenvolvedor é tímido.</p>
+
+<p>“Como chegamos a essa conclusão?” Essa pergunta é importante, uma vez eu perdi uma vaga em uma empresa 
+porque surgiu uma fofoca que não tinha nenhuma procedência. Isso afetou a minha vida.</p>
+
+<p>“Se ele for realmente tímido, como isso afeta no seu trabalho?” Essa pergunta é a chave do raciocínio, se 
+o trabalho dele envolver atividades como palestrar, apresentar reuniões com clientes ou encontrar clientes,
+logo ser tímido é uma característica que vai importar. Mas se ele for um desenvolvedor que vai trabalhar 
+em um time desenvolvendo atividades de engenharia ou gerenciando times, o que importa?</p>
+
+                </article>
+                
+<div class="series">
+    <div class="serie-contents">
+        
+        <h2>
+            Pensamento Crítico<br/>
+            <span class="description">(série de 3 partes)</span>
+        </h2>
+        
+            
+            <a href="/posts/um-pouco-de-pensamento-critico">
+                <div class="serie-article">Um pouco de Pensamento Crítico</div>
+            </a>
+            
+        
+            
+            <a href="/posts/determinando-a-confiabilidade-de-uma-evidencia">
+                <div class="serie-article">Determinando a Confiabilidade de uma evidência</div>
+            </a>
+            
+        
+            
+            <div class="serie-article selected">Ponderando a relevância de uma evidência</div>
+            
+        
+    </div>
+</div>
+
+                
+                <div class="published">
+                    
+                    <div>Originally published November 10, 2021</div>
+                    
+                </div>
+
+                
+                 
+                     
+                         
+                     
+                         
+                     
+                         
+                     
+                 
+                     
+                         
+                     
+                         
+                     
+                         
+                     
+                 
+                     
+                         
+                     
+                         
+                     
+                         
+                     
+                 
+                     
+                         
+                     
+                         
+                     
+                         
+                     
+                 
+                     
+                        
+                        
+                         
+                 
+                     
+                        
+                        
+                         
+                 
+                     
+                         
+                     
+                         
+                     
+                         
+                     
+                 
+                     
+                         
+                     
+                         
+                     
+                         
+                     
+                 
+                     
+                         
+                     
+                         
+                     
+                         
+                     
+                 
+                     
+                         
+                     
+                         
+                     
+                         
+                     
+                 
+                     
+                         
+                     
+                         
+                     
+                         
+                     
+                 
+                     
+                         
+                     
+                         
+                     
+                         
+                     
+                 
+                     
+                         
+                     
+                         
+                     
+                         
+                     
+                 
+                     
+                         
+                     
+                         
+                     
+                         
+                     
+                 
+                     
+                         
+                     
+                         
+                     
+                         
+                     
+                 
+                     
+                         
+                     
+                         
+                     
+                         
+                     
+                 
+                     
+                         
+                     
+                         
+                     
+                         
+                     
+                 
+                     
+                         
+                     
+                         
+                     
+                         
+                     
+                 
+                     
+                         
+                     
+                         
+                     
+                         
+                     
+                 
+                     
+                         
+                     
+                         
+                     
+                         
+                     
+                 
+                     
+                         
+                     
+                         
+                     
+                         
+                     
+                 
+                     
+                         
+                     
+                         
+                     
+                         
+                     
+                 
+                     
+                         
+                     
+                         
+                     
+                         
+                     
+                 
+                     
+                         
+                     
+                         
+                     
+                         
+                     
+                 
+                     
+                         
+                     
+                         
+                     
+                         
+                     
+                 
+                     
+                         
+                     
+                         
+                     
+                         
+                     
+                 
+                     
+                         
+                     
+                         
+                     
+                         
+                     
+                 
+                     
+                         
+                     
+                         
+                     
+                         
+                     
+                 
+                     
+                         
+                     
+                         
+                     
+                         
+                     
+                 
+                     
+                         
+                     
+                         
+                     
+                         
+                     
+                 
+                     
+                         
+                     
+                         
+                     
+                         
+                     
+                 
+                     
+                         
+                     
+                         
+                     
+                         
+                     
+                 
+                     
+                         
+                     
+                         
+                     
+                         
+                     
+                 
+                     
+                         
+                     
+                         
+                     
+                         
+                     
+                 
+                     
+                         
+                     
+                         
+                     
+                         
+                     
+                 
+                     
+                         
+                     
+                         
+                     
+                         
+                     
+                 
+                     
+                         
+                     
+                         
+                     
+                         
+                     
+                 
+                     
+                         
+                     
+                         
+                     
+                         
+                     
+                 
+                     
+                         
+                     
+                         
+                     
+                         
+                     
+                 
+                     
+                         
+                     
+                         
+                     
+                         
+                     
+                 
+                     
+                         
+                     
+                         
+                     
+                         
+                     
+                 
+                     
+                         
+                     
+                         
+                     
+                         
+                     
+                 
+                     
+                         
+                     
+                         
+                     
+                         
+                     
+                 
+                     
+                         
+                     
+                         
+                     
+                         
+                     
+                 
+                     
+                         
+                     
+                         
+                     
+                         
+                     
+                 
+                     
+                         
+                     
+                         
+                     
+                         
+                     
+                 
+                     
+                         
+                     
+                         
+                     
+                         
+                     
+                 
+                     
+                         
+                     
+                         
+                     
+                         
+                     
+                 
+                     
+                         
+                     
+                         
+                     
+                         
+                     
+                 
+                     
+                         
+                     
+                         
+                     
+                         
+                     
+                 
+                     
+                         
+                     
+                         
+                     
+                         
+                     
+                 
+                     
+                         
+                     
+                         
+                     
+                         
+                     
+                 
+                     
+                         
+                     
+                         
+                     
+                         
+                     
+                 
+                     
+                         
+                     
+                         
+                     
+                         
+                     
+                 
+                     
+                         
+                     
+                         
+                     
+                         
+                     
+                 
+                     
+                         
+                     
+                         
+                     
+                         
+                     
+                 
+                     
+                         
+                     
+                         
+                     
+                         
+                     
+                 
+                     
+                         
+                     
+                         
+                     
+                         
+                     
+                 
+                     
+                         
+                     
+                         
+                     
+                         
+                     
+                 
+                     
+                         
+                     
+                         
+                     
+                         
+                     
+                 
+                     
+                         
+                     
+                         
+                     
+                         
+                     
+                
+                
+                <div class="related-posts">
+                    <div class="related-post-header">Posts relacionados</div>
+                     
+                         
+                             
+                         
+                             
+                         
+                             
+                         
+                     
+                         
+                             
+                         
+                             
+                         
+                             
+                         
+                     
+                         
+                             
+                         
+                             
+                         
+                             
+                         
+                     
+                         
+                             
+                         
+                             
+                         
+                             
+                         
+                     
+                         
+                            
+                    <div class="related-post-item">
+                        <a href="/posts/determinando-a-confiabilidade-de-uma-evidencia">
+                                
+                                    Pensamento Crítico: Determinando a Confiabilidade de uma evidência
+                                
+                        </a>
+                    </div>
+                                 
+                     
+                         
+                            
+                    <div class="related-post-item">
+                        <a href="/posts/um-pouco-de-pensamento-critico">
+                                
+                                    Pensamento Crítico: Um pouco de Pensamento Crítico
+                                
+                        </a>
+                    </div>
+                                 
+                     
+                         
+                             
+                         
+                             
+                         
+                             
+                         
+                     
+                         
+                             
+                         
+                             
+                         
+                             
+                         
+                     
+                         
+                             
+                         
+                             
+                         
+                             
+                         
+                     
+                         
+                             
+                         
+                             
+                         
+                             
+                         
+                     
+                         
+                             
+                         
+                             
+                         
+                             
+                         
+                     
+                         
+                             
+                         
+                             
+                         
+                             
+                         
+                     
+                         
+                             
+                         
+                             
+                         
+                             
+                         
+                     
+                         
+                             
+                         
+                             
+                         
+                             
+                         
+                     
+                         
+                             
+                         
+                             
+                         
+                             
+                         
+                     
+                         
+                             
+                         
+                             
+                         
+                             
+                         
+                     
+                         
+                             
+                         
+                             
+                         
+                             
+                         
+                     
+                         
+                             
+                         
+                             
+                         
+                             
+                         
+                     
+                         
+                             
+                         
+                             
+                         
+                             
+                         
+                     
+                         
+                             
+                         
+                             
+                         
+                             
+                         
+                     
+                         
+                             
+                         
+                             
+                         
+                             
+                         
+                     
+                         
+                             
+                         
+                             
+                         
+                             
+                         
+                     
+                         
+                             
+                         
+                             
+                         
+                             
+                         
+                     
+                         
+                             
+                         
+                             
+                         
+                             
+                         
+                     
+                         
+                             
+                         
+                             
+                         
+                             
+                         
+                     
+                         
+                             
+                         
+                             
+                         
+                             
+                         
+                     
+                         
+                             
+                         
+                             
+                         
+                             
+                         
+                     
+                         
+                             
+                         
+                             
+                         
+                             
+                         
+                     
+                         
+                             
+                         
+                             
+                         
+                             
+                         
+                     
+                         
+                             
+                         
+                             
+                         
+                             
+                         
+                     
+                         
+                             
+                         
+                             
+                         
+                             
+                         
+                     
+                         
+                             
+                         
+                             
+                         
+                             
+                         
+                     
+                         
+                             
+                         
+                             
+                         
+                             
+                         
+                     
+                         
+                             
+                         
+                             
+                         
+                             
+                         
+                     
+                         
+                             
+                         
+                             
+                         
+                             
+                         
+                     
+                         
+                             
+                         
+                             
+                         
+                             
+                         
+                     
+                         
+                             
+                         
+                             
+                         
+                             
+                         
+                     
+                         
+                             
+                         
+                             
+                         
+                             
+                         
+                     
+                         
+                             
+                         
+                             
+                         
+                             
+                         
+                     
+                         
+                             
+                         
+                             
+                         
+                             
+                         
+                     
+                         
+                             
+                         
+                             
+                         
+                             
+                         
+                     
+                         
+                             
+                         
+                             
+                         
+                             
+                         
+                     
+                         
+                             
+                         
+                             
+                         
+                             
+                         
+                     
+                         
+                             
+                         
+                             
+                         
+                             
+                         
+                     
+                         
+                             
+                         
+                             
+                         
+                             
+                         
+                     
+                         
+                             
+                         
+                             
+                         
+                             
+                         
+                     
+                         
+                             
+                         
+                             
+                         
+                             
+                         
+                     
+                         
+                             
+                         
+                             
+                         
+                             
+                         
+                     
+                         
+                             
+                         
+                             
+                         
+                             
+                         
+                     
+                         
+                             
+                         
+                             
+                         
+                             
+                         
+                     
+                         
+                             
+                         
+                             
+                         
+                             
+                         
+                     
+                         
+                             
+                         
+                             
+                         
+                             
+                         
+                     
+                         
+                             
+                         
+                             
+                         
+                             
+                         
+                     
+                         
+                             
+                         
+                             
+                         
+                             
+                         
+                     
+                         
+                             
+                         
+                             
+                         
+                             
+                         
+                     
+                         
+                             
+                         
+                             
+                         
+                             
+                         
+                     
+                         
+                             
+                         
+                             
+                         
+                             
+                         
+                     
+                         
+                             
+                         
+                             
+                         
+                             
+                         
+                     
+                         
+                             
+                         
+                             
+                         
+                             
+                         
+                     
+                         
+                             
+                         
+                             
+                         
+                             
+                         
+                     
+                         
+                             
+                         
+                             
+                         
+                             
+                         
+                    
+                 
+                </div>
+                 
+                <div id="disqus_thread"></div>
+<script>
+    /**
+    *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+    *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables    */
+    /*
+    var disqus_config = function () {
+    this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
+    this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+    };
+    */
+    (function() { // DON'T EDIT BELOW THIS LINE
+    var d = document, s = d.createElement('script');
+    s.src = 'https://notas-do-dia-a-dia-de-um-engenheiro-de-software.disqus.com/embed.js';
+    s.setAttribute('data-timestamp', +new Date());
+    (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+                <!-- Twitter universal website tag code -->
+<script>
+  !function(e,t,n,s,u,a){e.twq||(s=e.twq=function(){s.exe?s.exe.apply(s,arguments):s.queue.push(arguments);
+  },s.version='1.1',s.queue=[],u=t.createElement(n),u.async=!0,u.src='//static.ads-twitter.com/uwt.js',
+  a=t.getElementsByTagName(n)[0],a.parentNode.insertBefore(u,a))}(window,document,'script');
+  // Insert Twitter Pixel ID and Standard Event data below
+  twq('init','o5djb');
+  twq('track','PageView');
+  </script>
+  <!-- End Twitter universal website tag code -->
+            </div>
+        </div>
+    </div>
+ 
+    <footer class="footer">
+	<ul class="footer-links">
+		<li>
+			<div>
+				<script type="text/javascript" src="https://cdnjs.buymeacoffee.com/1.0.0/button.prod.min.js"
+					data-name="bmc-button" data-slug="vepo" data-color="#5F7FFF" data-emoji="" data-font="Cookie"
+					data-text="Buy me a coffee" data-outline-color="#000000" data-font-color="#ffffff"
+					data-coffee-color="#FFDD00"></script>
+			</div>
+		</li>
+		<li>
+			<a href="http://github.com/vepo"> 
+				<i class="fab fa-github fa-inverse fa-3x"></i>
+			</a>
+		</li>
+		<li>
+			<a href="http://www.linkedin.com/in/victorosorio">
+				<i class="fab fa-linkedin-in fa-inverse fa-3x"></i>
+			</a>
+		</li>
+		<li>
+			<a href="https://twitter.com/vepo">
+				<i class="fab fa-twitter fa-inverse fa-3x"></i>
+			</a>
+		</li>
+		<li>&nbsp;</li>
+	</ul>
+</footer>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-166943279-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag() { dataLayer.push(arguments); }
+  gtag('js', new Date());
+
+  gtag('config', 'UA-166943279-1');
+</script> 
+    <script src="/assets/js/adjustments.js" async></script>
+</body>
+
+</html>

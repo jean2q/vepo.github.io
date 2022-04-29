@@ -1,0 +1,1874 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="shortcut icon" type="image/png" href="/icon.png" />
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@vepo">
+  <meta name="twitter:creator" content="@vepo">
+  <meta name="google-site-verification" content="xw_kgncLhv22qVjTIPi7adALZre8FIHY02-DGCuYuZ4" />
+  
+  <!-- SEO stuff -->
+  
+  <title>Coisas que todo Sênior deve saber: Construindo softwares resilientes</title>
+  <meta property="og:title" content="Coisas que todo Sênior deve saber: Construindo softwares resilientes" />
+  <meta name="twitter:title" content="Coisas que todo Sênior deve saber: Construindo softwares resilientes">
+  
+
+
+  
+  <meta name="description" content="Um Sênior de Verdade sabe construir software resilientes! Mas o que significa um Software Resiliente?" />
+  <meta property="og:description" content="Um Sênior de Verdade sabe construir software resilientes! Mas o que significa um Software Resiliente?" />
+  <meta name="twitter:description" content="Um Sênior de Verdade sabe construir software resilientes! Mas o que significa um Software Resiliente?">
+  
+
+  
+  <meta name="keywords" content="Desenvolvimento de Software, Programação, TDD, Carreira">
+  
+
+  <link rel="canonical" href="https://vepo.github.io/posts/construindo-software-resilientes" />
+  <meta property="og:url" content="https://vepo.github.io/posts/construindo-software-resilientes" />
+  <meta name="twitter:url" content="https://vepo.github.io/posts/construindo-software-resilientes">
+
+  <meta property="og:site_name" content="Notas do dia a dia de um engenheiro de software" />
+
+  
+  <meta property="og:image" content="https://vepo.github.iohttps://dev-to-uploads.s3.amazonaws.com/i/r0c1v42fgwn0oufuo4u6.jpg" />
+  <meta name="twitter:image" content="https://vepo.github.iohttps://dev-to-uploads.s3.amazonaws.com/i/r0c1v42fgwn0oufuo4u6.jpg">
+  
+
+  
+  <!-- if it's an article -->
+  <meta property="og:type" content="article" />
+  
+  <meta property="article:published_time" content="2020-05-08T14:05:31+00:00" />
+  <meta property="article:modified_time" content="2020-05-08T14:05:31+00:00" />
+  
+
+  <meta content="https://www.linkedin.com/in/victorosorio/" property="article:author">
+
+  
+  
+  
+
+  
+  
+  <meta content="Desenvolvimento de Software" property="article:tag">
+  
+  <meta content="Programação" property="article:tag">
+  
+  <meta content="TDD" property="article:tag">
+  
+  <meta content="Carreira" property="article:tag">
+  
+  
+
+  <script type="application/ld+json">
+    {
+      "@context": "http://schema.org",
+      "@type": "BlogPosting",
+      "headline": "Construindo softwares resilientes",
+      "datePublished": "2020-05-08T14:05:31+00:00",
+      
+      "description": "Um Sênior de Verdade sabe construir software resilientes! Mas o que significa um Software Resiliente?",
+      
+      
+      "sameAs" : [
+        "https://dev.to/vepo/construindo-softwares-resilientes-3d65"
+      ],
+      
+      "url": "https://vepo.github.io/posts/construindo-software-resilientes"
+    }
+  </script>
+
+  
+
+  <link rel="author" href="https://www.linkedin.com/in/victorosorio/" />
+
+  <!-- End SEO stuff -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+  <link href="/assets/thirdy-party/fontawesome/css/all.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="/assets/css/main.css" />
+  <link href="/assets/css/syntax.css" rel="stylesheet">
+  
+  <script src="/assets/js/jquery.min.js"></script>
+  <script src="/assets/thirdy-party/fontawesome/js/all.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj" crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <div class="d-flex">
+        <div class="menu">
+        <script async src="/assets/js/menu.js"></script>
+<div class="enabler">
+	<li class="nav-item">
+		<a class="nav-link" aria-current="page" href="/">
+			Conteúdo&nbsp;<i class="fa fa-fist-raised"></i>
+		</a>
+	</li>
+</div>
+<div class="nav flex-column">
+	<li class="nav-item">
+		<a class="nav-link" aria-current="page" href="/">
+			Victor Osório&nbsp;<i class="fa fa-fist-raised home"></i>
+		</a>
+	</li>
+	
+		
+		<li class="nav-item">
+			<a class="nav-link" aria-current="page" href="#" 
+			   data-bs-toggle="collapse" data-bs-target="#container-collapse-pet-projects" 
+			   aria-expanded="false" aria-controls="container-collapse-pet-projects" >Pet Projects</a>
+			<div class="collapse submenu" id="container-collapse-pet-projects">
+				
+				<a class="nav-link" aria-current="page" href="/projects/csv-viewer">CSV Viewer</a>
+				
+				<a class="nav-link" aria-current="page" href="/projects/plain-test">Plain Test</a>
+				
+				<a class="nav-link" aria-current="page" href="/projects/kafka-tool">Kafka Tool</a>
+				
+			</div>
+		</li>		
+		
+	
+		
+		<li class="nav-item">
+			<a class="nav-link" aria-current="page" href="#" 
+			   data-bs-toggle="collapse" data-bs-target="#container-collapse-apresentações" 
+			   aria-expanded="false" aria-controls="container-collapse-apresentações" >Apresentações</a>
+			<div class="collapse submenu" id="container-collapse-apresentações">
+				
+				<a class="nav-link" aria-current="page" href="/presentations/2020-03-26-sou-java-kafka">Kafka: Uma introdução para Desenvolvedores e Arquitetos</a>
+				
+				<a class="nav-link" aria-current="page" href="/presentations/2019-09-14-sou-java-cdi">Usando Java CDI em projetos Jakarta EE ou Microprofile</a>
+				
+				<a class="nav-link" aria-current="page" href="/presentations/2021-08-26-a-filosofia-do-design-de-codigo">A Filosofia do Design de Código</a>
+				
+				<a class="nav-link" aria-current="page" href="/presentations/2021-06-10-diversidade-cultural">Diversidade Cultural? E isso importa?</a>
+				
+			</div>
+		</li>		
+		
+	
+		
+		<li class="nav-item">
+			<a class="nav-link" aria-current="page" href="/">Posts</a>
+		</li>
+		
+	
+		
+		<li class="nav-item">
+			<a class="nav-link" aria-current="page" href="/tags">Tags</a>
+		</li>
+		
+	
+		
+		<li class="nav-item">
+			<a class="nav-link" aria-current="page" href="/series">Séries</a>
+		</li>
+		
+	
+		
+		<li class="nav-item">
+			<a class="nav-link" aria-current="page" href="/about">Sobre</a>
+		</li>
+		
+	
+		
+		<li class="nav-item">
+			<a class="nav-link" aria-current="page" href="/books">Livros Recomendados</a>
+		</li>
+		
+	
+		
+		<li class="nav-item">
+			<a class="nav-link" aria-current="page" href="#" 
+			   data-bs-toggle="collapse" data-bs-target="#container-collapse-redes-sociais" 
+			   aria-expanded="false" aria-controls="container-collapse-redes-sociais" >Redes Sociais</a>
+			<div class="collapse submenu" id="container-collapse-redes-sociais">
+				
+				<a class="nav-link" aria-current="page" href="http://github.com/vepo">GitHub</a>
+				
+				<a class="nav-link" aria-current="page" href="http://www.linkedin.com/in/victorosorio">LinkedIn</a>
+				
+				<a class="nav-link" aria-current="page" href="https://twitter.com/vepo">Twitter</a>
+				
+			</div>
+		</li>		
+		
+	
+	<li class="nav-item">
+		<a class="nav-link" aria-current="page" href="https://twitter.com/vepo">
+			<i class="fab fa-twitter"></i> @vepo
+		</a>
+	</li>
+</div>
+<div align="center">
+	<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8088229614848913" crossorigin="anonymous"></script>
+	<!-- Homepage Leaderboard -->
+	<ins class="adsbygoogle"
+		 style="display:inline-block;width:168px;height:90px"
+		 data-ad-client="ca-pub-8088229614848913"
+	     data-ad-slot="1234567890"></ins>
+	<script>
+		(adsbygoogle = window.adsbygoogle || []).push({});
+	</script>
+</div>
+        </div>
+        
+        
+        <div class="flex-grow-1">
+            <div class="container post">
+                <div class="title">
+    
+    <h1 class="serie-title">
+        Coisas que todo Sênior deve saber
+    </h1>
+    <h2>
+        Construindo softwares resilientes
+    </h2>
+    
+</div>
+<div class="cover-image">
+    
+    <img alt="Construindo softwares resilientes" src="https://dev-to-uploads.s3.amazonaws.com/i/r0c1v42fgwn0oufuo4u6.jpg" class="img-responsive" />
+    
+</div>
+                
+                <p>
+                    
+                    <strong>
+                        <time datetime="2020-05-08T14:05:31+00:00">
+                            May 08, 2020
+                        </time>
+                    </strong> 
+                    
+                </p>
+                <div class="tag-container">
+                    
+                    <a class="label label-default desenvolvimento-de-software" href="/tags/#desenvolvimento-de-software">Desenvolvimento de Software</a> 
+                    
+                    <a class="label label-default programação" href="/tags/#programação">Programação</a> 
+                    
+                    <a class="label label-default tdd" href="/tags/#tdd">TDD</a> 
+                    
+                    <a class="label label-default carreira" href="/tags/#carreira">Carreira</a> 
+                    
+                </div>
+                    
+                    
+                <div>
+                    Post originally published on <a href="https://dev.to/vepo/construindo-softwares-resilientes-3d65">dev.to</a>.
+                </div>
+                    
+                <hr> 
+                
+                
+<div class="series">
+    <div class="serie-contents">
+        
+        <h2>
+            Coisas que todo Sênior deve saber<br/>
+            <span class="description">(série de 9 partes)</span>
+        </h2>
+        
+            
+            <a href="/posts/trabalhando-com-dinheiro">
+                <div class="serie-article">Trabalhando com dinheiro!</div>
+            </a>
+            
+        
+            
+            <a href="/posts/design-patterns-e-se-alguem-ja-tiver-resolvido-seu-problema">
+                <div class="serie-article">Design Patterns. E se alguém já tiver resolvido seu problema?</div>
+            </a>
+            
+        
+            
+            <div class="serie-article selected">Construindo softwares resilientes</div>
+            
+        
+            
+            <a href="/posts/deixando-rastros-ou-como-usar-log">
+                <div class="serie-article">Deixando rastros, ou como usar log</div>
+            </a>
+            
+        
+            
+            <a href="/posts/debugando-ou-troubleshooting">
+                <div class="serie-article">Debugando ou Troubleshooting</div>
+            </a>
+            
+        
+            
+            <a href="/posts/s-o-l-i-d-a-solida-base-para-orientacao-a-objeto">
+                <div class="serie-article">S.O.L.I.D.: A sólida base para Orientação a Objeto</div>
+            </a>
+            
+        
+            
+            <a href="/posts/devops-como-comecar">
+                <div class="serie-article">DevOps! Como começar?</div>
+            </a>
+            
+        
+            
+            <a href="/posts/me-escuta">
+                <div class="serie-article">Me escuta?</div>
+            </a>
+            
+        
+            
+            <a href="/posts/log-nao-e-auditoria">
+                <div class="serie-article">Log não é auditoria!</div>
+            </a>
+            
+        
+    </div>
+</div>
+
+                <article>
+                    <p><em>- Já ouviu falar de <strong>eXtreme Go Horse (XGH)</strong>?</em> <br />
+<em>- Não?!</em> 🙄 <br />
+<em>- Mas você pratica <strong>XGH</strong>?</em> 🤨<br />
+<em>- Não?</em> <br />
+<em>- Ainda bem!</em> 😀</p>
+
+<p><strong>XGH</strong> é uma piada que gosto muito. Espero que você não o pratique. Mas coloquei ele na roda por seu exato oposto. Um Sênior deve construir softwares estáveis. E para se construir software estáveis você tem que ir pro extremo oposto do <strong>XGH</strong>. Devemos construir software resilientes.</p>
+
+<p>Sim, eu usei a palavra resiliente. Vamos ao significado?</p>
+
+<p><img src="https://dev-to-uploads.s3.amazonaws.com/i/ou8mdzzu5v5ii8n4fbay.png" alt="Alt Text" /></p>
+
+<p>Resiliência é a propriedade de um sistema suportar adversidade.</p>
+
+<h1 id="construindo-resiliência">Construindo Resiliência</h1>
+
+<p>Nós como desenvolvedores resolvemos problemas automatizando coisas. Quando vemos um problema já pensamos no modo como ele deve ser resolvido.</p>
+
+<p>Mas e se houver outra forma? 
+E se seu usuário não entender a forma como deve ser feito o processo? 
+E se houver um erro durante processo? 
+E se necessitar uma configuração na máquina?</p>
+
+<p>É nessas horas que seu software tem que ser Resiliente.</p>
+
+<p>Verdadeiros Sêniors constroem sistemas resilientes. Mas não seja gnóstico, não é um post que vai te fazer construir sistemas resilientes, é resolvendo bugs! Tudo que posso fazer por você é te ensinar o caminho, você terá que trilhar ele sozinho.</p>
+
+<p>Então vamos com algumas dicas:</p>
+
+<h2 id="1-um-sênior-pensa-em-todos-os-problemas-que-podem-acontecer-em-um-fluxo">1. Um Sênior pensa em todos os problemas que podem acontecer em um fluxo</h2>
+
+<p>Quando você vai escrever um código, você sempre tem premissas:</p>
+
+<ol>
+  <li>Existe um arquivo de configuração.</li>
+  <li>Há uma classe que implementa essa interface.</li>
+  <li>O servidor está de pé.</li>
+  <li>Etc…</li>
+</ol>
+
+<p>E se uma premissas dessas não for verdadeira? Seu código irá funcionar? Ou pelo menos irá mostrar o erro correto?</p>
+
+<p>Vamos para exemplos reais?</p>
+
+<p>Eu tenho um projeto que estou desenvolvendo para ser um tipo de tester. Dá uma olhada lá:</p>
+
+<div class="github-repo">
+    <h2>
+        <img class="logo" src="/assets/images/plugins/github-logo.png" alt="GitHub logo" loading="lazy" />
+        <img class="user" src="https://avatars.githubusercontent.com/u/353569?v=4" loading="lazy" />
+        <span class="url">
+            <a href="https://github.com/vepo">
+                vepo
+            </a> 
+            /
+            <a href="https://github.com/vepo/plain-test">
+                plain-test
+            </a>
+        </span>
+    </h2>
+</div>
+
+<p>Nele eu executo o testes em passos (<em>Step</em>), cada passo tem um plugin que implementa. Então para execução de um passo eu preciso:</p>
+
+<ol>
+  <li>Achar o Plugin de Execução</li>
+  <li>Executar o Passo</li>
+  <li>Verificar os Assertions do Passo</li>
+</ol>
+
+<p>Simples? Poderia ser implementado em 1 linha?</p>
+
+<script src="https://gist.github.com/vepo/871ebd3e0fa62aebfbc135e61ad74235.js"></script>
+
+<p>Mas temos dois problemas aqui que devem ser validados.</p>
+
+<ol>
+  <li>Há um Plugin para implementar o Passo?</li>
+  <li>Na definição do Passo, todos os parâmetros estão definidos?</li>
+</ol>
+
+<p>Vê que temos mais dois problemas a verificar? E detalhe, esses problemas são um erro de definição do teste e não de execução do teste. Logo o motivo da falha deve ser diferente.</p>
+
+<script src="https://gist.github.com/vepo/416b699bb7c9fca3b49e202b19d99d7d.js"></script>
+
+<p>Ao se identificar um erro, exiba a mensagem de erro correta, que ajuda quem irá resolver esse erro.</p>
+
+<h2 id="2-um-sênior-desenvolve-software-que-é-resistente-a-desenvolvedores">2. Um Sênior desenvolve software que é resistente a desenvolvedores</h2>
+
+<p>Ok! Você desenvolveu o negócio lindamente. Está tudo funcionando perfeitamente, fez o <em>deploy</em> em produção. Resultado: usuários felizes! 😀</p>
+
+<p>Fim? Pode ser que não, em algum momento esse software poderá ser atualizado. Pode ser necessários corrigir os bugs que ainda não foram encontrados, ou poderá ser adicionada alguma feature. Qualquer alteração, em qualquer lugar, tem o potencial de alterar a lógica do seu software. Como podemos validar que tudo está funcionando corretamente?</p>
+
+<p><em>Não vou vender TDD como uma bala de prata, esse não é o problema que TDD resolve. Depois falo de TDD. Eu gosto de TDD por isso repito TDD… Continuamente… TDD</em></p>
+
+<p>Um Sênior de verdade constrói software resiliente a desenvolvedores. Mas como fazer isso?</p>
+
+<p>Você deveria se preocupar com algumas coisas:</p>
+
+<ol>
+  <li>Qual a cobertura de testes do sistema?</li>
+  <li>Os testes foram feitos só pra passar pela cobertura de testes e agradar o arquiteto? Ou os testes estão realmente validando o output?</li>
+  <li>Os testes são executados no processo de build?</li>
+</ol>
+
+<p>Caso você tenha respondido não para qualquer uma das perguntas abaixo, seu software não é resiliente a desenvolvedores. E você não pode confiar em si mesmo a ponto de pensar que você conseguirá resolver todos os problemas no futuro.</p>
+
+<p>Quando resolvemos um bug, ou adicionamos uma feature nova, temos um pensamento viciado. Apenas pensamos em um fluxo, e nos esquecemos de outros. É normal e esperado isso. Você é um engenheiro e não Deus.</p>
+
+<p>Como eu resolvo isso? Eu crio testes unitários com todos os pressupostos.</p>
+
+<script src="https://gist.github.com/vepo/88d10d4c6e4ae0523ffe19268f5871f0.js"></script>
+
+<p>É um habito meu começar meu desenvolvimento com alguns pressupostos desses, mas eles não fazem parte do <em><strong>TDD</strong></em>, pois não são <em>Baby Step</em>. Mas eles dão uma clara visão do que vai falhar. Pode ser que em uma próxima feature um passo desses falhe, e o desenvolvedor irá decidir:</p>
+
+<ol>
+  <li>Se corrige o problema</li>
+  <li>Se corrige o teste</li>
+  <li>Se remove o teste, caso ele não faça mais sentido.</li>
+</ol>
+
+<h2 id="3-um-sênior-investiga-possíveis-erros">3. Um Sênior investiga possíveis erros</h2>
+
+<p><em>- Então, esse teste falha em 50% dos casos. Mas caso falhe, roda de novo que dá certo.</em></p>
+
+<p><img src="https://dev-to-uploads.s3.amazonaws.com/i/lefte06h7r9ngi7d4l8b.jpg" alt="Alt Text" /></p>
+
+<p>Se você ouvir essa frase. Recrimine! Isso não pode acontecer.</p>
+
+<p>Um possível erro intermitente em um teste pode ser um erro intermitente em produção. Pode ser custoso investigar antes do <em>deploy</em>? Pode! Mas será mais barato do que investigar depois do <em>deploy</em>, não?</p>
+
+<p>Um Sênior de verdade sabe que pequenos problemas não podem passar sem investigação. Não pode buscar a solução fácil de ignorar ou remover o teste. Isso é fácil, mas para um sênior é porco <em>(com todo respeito aos porcos)</em>.</p>
+
+<h1 id="conclusão">Conclusão</h1>
+
+<p>Quase todo software necessita de resiliência. E um Sênior de Verdade sabe ver isso.</p>
+
+<p>Ele consegue se precaver de várias situações:</p>
+
+<ol>
+  <li>Erros esperados</li>
+  <li>Erros inesperados</li>
+  <li>Pessoas esperadas</li>
+  <li>Pessoas inesperadas</li>
+  <li>Aleatoriedades….</li>
+</ol>
+
+<p>Não que ele deva ser um Deus em se tratando de desenvolvimento, mas tem que praticar a disciplina de promover a resiliência.</p>
+
+<p>Esse é um caminho a ser trilhado….</p>
+
+<h1 id="livros-recomendados">Livros Recomendados</h1>
+
+<ol>
+  <li><a href="https://amzn.to/3ceZIzm">O Projeto Fênix: um Romance Sobre TI, DevOps e Sobre Ajudar o seu Negócio a Vence</a></li>
+  <li><a href="https://amzn.to/3bi9wHg">Test Driven Development: By Example</a></li>
+  <li><a href="https://amzn.to/3chO9r6">Código Limpo: Habilidades Práticas do Agile Software</a></li>
+</ol>
+
+                </article>
+                
+<div class="series">
+    <div class="serie-contents">
+        
+        <h2>
+            Coisas que todo Sênior deve saber<br/>
+            <span class="description">(série de 9 partes)</span>
+        </h2>
+        
+            
+            <a href="/posts/trabalhando-com-dinheiro">
+                <div class="serie-article">Trabalhando com dinheiro!</div>
+            </a>
+            
+        
+            
+            <a href="/posts/design-patterns-e-se-alguem-ja-tiver-resolvido-seu-problema">
+                <div class="serie-article">Design Patterns. E se alguém já tiver resolvido seu problema?</div>
+            </a>
+            
+        
+            
+            <div class="serie-article selected">Construindo softwares resilientes</div>
+            
+        
+            
+            <a href="/posts/deixando-rastros-ou-como-usar-log">
+                <div class="serie-article">Deixando rastros, ou como usar log</div>
+            </a>
+            
+        
+            
+            <a href="/posts/debugando-ou-troubleshooting">
+                <div class="serie-article">Debugando ou Troubleshooting</div>
+            </a>
+            
+        
+            
+            <a href="/posts/s-o-l-i-d-a-solida-base-para-orientacao-a-objeto">
+                <div class="serie-article">S.O.L.I.D.: A sólida base para Orientação a Objeto</div>
+            </a>
+            
+        
+            
+            <a href="/posts/devops-como-comecar">
+                <div class="serie-article">DevOps! Como começar?</div>
+            </a>
+            
+        
+            
+            <a href="/posts/me-escuta">
+                <div class="serie-article">Me escuta?</div>
+            </a>
+            
+        
+            
+            <a href="/posts/log-nao-e-auditoria">
+                <div class="serie-article">Log não é auditoria!</div>
+            </a>
+            
+        
+    </div>
+</div>
+
+                
+                <div class="published">
+                    
+                    <div>Originally published May 08, 2020</div>
+                    
+                </div>
+
+                
+                 
+                     
+                         
+                     
+                         
+                     
+                         
+                     
+                         
+                     
+                 
+                     
+                         
+                     
+                         
+                     
+                         
+                     
+                         
+                     
+                 
+                     
+                         
+                     
+                         
+                     
+                         
+                     
+                         
+                     
+                 
+                     
+                         
+                     
+                         
+                     
+                         
+                     
+                         
+                     
+                 
+                     
+                         
+                     
+                         
+                     
+                         
+                     
+                         
+                     
+                 
+                     
+                         
+                     
+                         
+                     
+                         
+                     
+                         
+                     
+                 
+                     
+                         
+                     
+                         
+                     
+                         
+                     
+                         
+                     
+                 
+                     
+                         
+                     
+                         
+                     
+                         
+                     
+                         
+                     
+                 
+                     
+                         
+                     
+                         
+                     
+                         
+                     
+                         
+                     
+                 
+                     
+                         
+                     
+                         
+                     
+                         
+                     
+                         
+                     
+                 
+                     
+                         
+                     
+                        
+                        
+                         
+                 
+                     
+                         
+                     
+                         
+                     
+                         
+                     
+                         
+                     
+                 
+                     
+                         
+                     
+                        
+                        
+                         
+                 
+                     
+                         
+                     
+                        
+                        
+                         
+                 
+                     
+                         
+                     
+                         
+                     
+                         
+                     
+                         
+                     
+                 
+                     
+                         
+                     
+                         
+                     
+                         
+                     
+                         
+                     
+                 
+                     
+                         
+                     
+                         
+                     
+                         
+                     
+                         
+                     
+                 
+                     
+                         
+                     
+                         
+                     
+                         
+                     
+                         
+                     
+                 
+                     
+                         
+                     
+                         
+                     
+                         
+                     
+                         
+                     
+                 
+                     
+                         
+                     
+                         
+                     
+                         
+                     
+                         
+                     
+                 
+                     
+                         
+                     
+                         
+                     
+                         
+                     
+                         
+                     
+                 
+                     
+                         
+                     
+                         
+                     
+                         
+                     
+                         
+                     
+                 
+                     
+                         
+                     
+                         
+                     
+                         
+                     
+                         
+                     
+                 
+                     
+                         
+                     
+                         
+                     
+                         
+                     
+                         
+                     
+                 
+                     
+                         
+                     
+                         
+                     
+                         
+                     
+                         
+                     
+                 
+                     
+                         
+                     
+                         
+                     
+                         
+                     
+                         
+                     
+                 
+                     
+                         
+                     
+                         
+                     
+                         
+                     
+                         
+                     
+                 
+                     
+                         
+                     
+                         
+                     
+                         
+                     
+                         
+                     
+                 
+                     
+                         
+                     
+                         
+                     
+                         
+                     
+                         
+                     
+                 
+                     
+                         
+                     
+                         
+                     
+                         
+                     
+                        
+                        
+                         
+                 
+                     
+                         
+                     
+                         
+                     
+                        
+                        
+                         
+                 
+                     
+                         
+                     
+                         
+                     
+                         
+                     
+                         
+                     
+                 
+                     
+                         
+                     
+                         
+                     
+                         
+                     
+                         
+                     
+                 
+                     
+                         
+                     
+                        
+                        
+                         
+                 
+                     
+                         
+                     
+                         
+                     
+                         
+                     
+                         
+                     
+                 
+                     
+                         
+                     
+                        
+                        
+                         
+                 
+                     
+                        
+                        
+                         
+                 
+                     
+                         
+                     
+                         
+                     
+                         
+                     
+                         
+                     
+                 
+                     
+                         
+                     
+                         
+                     
+                         
+                     
+                         
+                     
+                 
+                     
+                         
+                     
+                         
+                     
+                         
+                     
+                         
+                     
+                 
+                     
+                         
+                     
+                         
+                     
+                         
+                     
+                         
+                     
+                 
+                     
+                         
+                     
+                         
+                     
+                         
+                     
+                         
+                     
+                 
+                     
+                         
+                     
+                         
+                     
+                         
+                     
+                         
+                     
+                 
+                     
+                        
+                        
+                         
+                 
+                     
+                         
+                     
+                         
+                     
+                         
+                     
+                         
+                     
+                 
+                     
+                        
+                        
+                         
+                 
+                     
+                         
+                     
+                         
+                     
+                         
+                     
+                         
+                     
+                 
+                     
+                         
+                     
+                         
+                     
+                         
+                     
+                         
+                     
+                 
+                     
+                         
+                     
+                         
+                     
+                         
+                     
+                         
+                     
+                 
+                     
+                         
+                     
+                         
+                     
+                         
+                     
+                         
+                     
+                 
+                     
+                         
+                     
+                         
+                     
+                         
+                     
+                         
+                     
+                 
+                     
+                         
+                     
+                         
+                     
+                         
+                     
+                         
+                     
+                 
+                     
+                         
+                     
+                         
+                     
+                         
+                     
+                         
+                     
+                 
+                     
+                         
+                     
+                         
+                     
+                         
+                     
+                         
+                     
+                 
+                     
+                         
+                     
+                         
+                     
+                         
+                     
+                         
+                     
+                 
+                     
+                         
+                     
+                         
+                     
+                         
+                     
+                         
+                     
+                 
+                     
+                         
+                     
+                         
+                     
+                         
+                     
+                         
+                     
+                 
+                     
+                         
+                     
+                         
+                     
+                        
+                        
+                         
+                 
+                     
+                         
+                     
+                         
+                     
+                         
+                     
+                         
+                     
+                 
+                     
+                         
+                     
+                         
+                     
+                         
+                     
+                         
+                     
+                 
+                     
+                         
+                     
+                         
+                     
+                        
+                        
+                         
+                
+                
+                <div class="related-posts">
+                    <div class="related-post-header">Posts relacionados</div>
+                     
+                         
+                             
+                         
+                             
+                         
+                             
+                         
+                             
+                         
+                     
+                         
+                             
+                         
+                             
+                         
+                             
+                         
+                             
+                         
+                     
+                         
+                             
+                         
+                             
+                         
+                             
+                         
+                             
+                         
+                     
+                         
+                             
+                         
+                             
+                         
+                             
+                         
+                             
+                         
+                     
+                         
+                             
+                         
+                             
+                         
+                             
+                         
+                             
+                         
+                     
+                         
+                             
+                         
+                             
+                         
+                             
+                         
+                             
+                         
+                     
+                         
+                             
+                         
+                             
+                         
+                             
+                         
+                             
+                         
+                     
+                         
+                             
+                         
+                             
+                         
+                             
+                         
+                             
+                         
+                     
+                         
+                             
+                         
+                             
+                         
+                             
+                         
+                             
+                         
+                     
+                         
+                             
+                         
+                             
+                         
+                             
+                         
+                             
+                         
+                     
+                         
+                             
+                         
+                            
+                    <div class="related-post-item">
+                        <a href="/posts/as-alegrias-da-arte">
+                                
+                                    O Poço de Alcatrão: As Alegrias da Arte
+                                
+                        </a>
+                    </div>
+                                 
+                     
+                         
+                             
+                         
+                             
+                         
+                             
+                         
+                             
+                         
+                     
+                         
+                             
+                         
+                            
+                    <div class="related-post-item">
+                        <a href="/posts/elegant-objects-1">
+                                
+                                    Primeiras Impressões: Elegant Objects, vol. 1 - I
+                                
+                        </a>
+                    </div>
+                                 
+                     
+                         
+                             
+                         
+                            
+                    <div class="related-post-item">
+                        <a href="/posts/a-filosofia-do-design-de-codigo">
+                                
+                                    A Filosofia do Design de Código
+                                
+                        </a>
+                    </div>
+                                 
+                     
+                         
+                             
+                         
+                             
+                         
+                             
+                         
+                             
+                         
+                     
+                         
+                             
+                         
+                             
+                         
+                             
+                         
+                             
+                         
+                     
+                         
+                             
+                         
+                             
+                         
+                             
+                         
+                             
+                         
+                     
+                         
+                             
+                         
+                             
+                         
+                             
+                         
+                             
+                         
+                     
+                         
+                             
+                         
+                             
+                         
+                             
+                         
+                             
+                         
+                     
+                         
+                             
+                         
+                             
+                         
+                             
+                         
+                             
+                         
+                     
+                         
+                             
+                         
+                             
+                         
+                             
+                         
+                             
+                         
+                     
+                         
+                             
+                         
+                             
+                         
+                             
+                         
+                             
+                         
+                     
+                         
+                             
+                         
+                             
+                         
+                             
+                         
+                             
+                         
+                     
+                         
+                             
+                         
+                             
+                         
+                             
+                         
+                             
+                         
+                     
+                         
+                             
+                         
+                             
+                         
+                             
+                         
+                             
+                         
+                     
+                         
+                             
+                         
+                             
+                         
+                             
+                         
+                             
+                         
+                     
+                         
+                             
+                         
+                             
+                         
+                             
+                         
+                             
+                         
+                     
+                         
+                             
+                         
+                             
+                         
+                             
+                         
+                             
+                         
+                     
+                         
+                             
+                         
+                             
+                         
+                             
+                         
+                             
+                         
+                     
+                         
+                             
+                         
+                             
+                         
+                             
+                         
+                            
+                    <div class="related-post-item">
+                        <a href="/posts/soft-skills-101-mentoria-porque-e-como">
+                                
+                                    Level Up: Soft-Skill 101 - Mentoria. Porque e como?
+                                
+                        </a>
+                    </div>
+                                 
+                     
+                         
+                             
+                         
+                             
+                         
+                            
+                    <div class="related-post-item">
+                        <a href="/posts/testes-101-testando-aplicações-java">
+                                
+                                    Level Up: Testes 101 - Testando aplicações Java
+                                
+                        </a>
+                    </div>
+                                 
+                     
+                         
+                             
+                         
+                             
+                         
+                             
+                         
+                             
+                         
+                     
+                         
+                             
+                         
+                             
+                         
+                             
+                         
+                             
+                         
+                     
+                         
+                             
+                         
+                            
+                    <div class="related-post-item">
+                        <a href="/posts/devops-como-comecar">
+                                
+                                    Coisas que todo Sênior deve saber: DevOps! Como começar?
+                                
+                        </a>
+                    </div>
+                                 
+                     
+                         
+                             
+                         
+                             
+                         
+                             
+                         
+                             
+                         
+                     
+                         
+                             
+                         
+                            
+                    <div class="related-post-item">
+                        <a href="/posts/s-o-l-i-d-a-solida-base-para-orientacao-a-objeto">
+                                
+                                    Coisas que todo Sênior deve saber: S.O.L.I.D.: A sólida base para Orientação a Objeto
+                                
+                        </a>
+                    </div>
+                                 
+                     
+                         
+                            
+                    <div class="related-post-item">
+                        <a href="/posts/linguagem-onipresente">
+                                
+                                    Domain-Driven Design: Linguagem Onipresente
+                                
+                        </a>
+                    </div>
+                                 
+                     
+                         
+                             
+                         
+                             
+                         
+                             
+                         
+                             
+                         
+                     
+                         
+                             
+                         
+                             
+                         
+                             
+                         
+                             
+                         
+                     
+                         
+                             
+                         
+                             
+                         
+                             
+                         
+                             
+                         
+                     
+                         
+                             
+                         
+                             
+                         
+                             
+                         
+                             
+                         
+                     
+                         
+                             
+                         
+                             
+                         
+                             
+                         
+                             
+                         
+                     
+                         
+                             
+                         
+                             
+                         
+                             
+                         
+                             
+                         
+                     
+                         
+                            
+                    <div class="related-post-item">
+                        <a href="/posts/deixando-rastros-ou-como-usar-log">
+                                
+                                    Coisas que todo Sênior deve saber: Deixando rastros, ou como usar log
+                                
+                        </a>
+                    </div>
+                                 
+                     
+                         
+                             
+                         
+                             
+                         
+                             
+                         
+                             
+                         
+                     
+                         
+                            
+                    <div class="related-post-item">
+                        <a href="/posts/design-patterns-e-se-alguem-ja-tiver-resolvido-seu-problema">
+                                
+                                    Coisas que todo Sênior deve saber: Design Patterns. E se alguém já tiver resolvido seu problema?
+                                
+                        </a>
+                    </div>
+                                 
+                     
+                         
+                             
+                         
+                             
+                         
+                             
+                         
+                             
+                         
+                     
+                         
+                             
+                         
+                             
+                         
+                             
+                         
+                             
+                         
+                     
+                         
+                             
+                         
+                             
+                         
+                             
+                         
+                             
+                         
+                     
+                         
+                             
+                         
+                             
+                         
+                             
+                         
+                             
+                         
+                     
+                         
+                             
+                         
+                             
+                         
+                             
+                         
+                             
+                         
+                     
+                         
+                             
+                         
+                             
+                         
+                             
+                         
+                             
+                         
+                     
+                         
+                             
+                         
+                             
+                         
+                             
+                         
+                             
+                         
+                     
+                         
+                             
+                         
+                             
+                         
+                             
+                         
+                             
+                         
+                     
+                         
+                             
+                         
+                             
+                         
+                             
+                         
+                             
+                         
+                     
+                         
+                             
+                         
+                             
+                         
+                             
+                         
+                             
+                         
+                     
+                         
+                             
+                         
+                             
+                         
+                             
+                         
+                             
+                         
+                     
+                         
+                             
+                         
+                             
+                         
+                            
+                    <div class="related-post-item">
+                        <a href="/posts/tests-and-requirements">
+                                
+                                    Thoughts on TDD: Tests and Requirements
+                                
+                        </a>
+                    </div>
+                                 
+                     
+                         
+                             
+                         
+                             
+                         
+                             
+                         
+                             
+                         
+                     
+                         
+                             
+                         
+                             
+                         
+                             
+                         
+                             
+                         
+                     
+                         
+                             
+                         
+                             
+                         
+                            
+                    <div class="related-post-item">
+                        <a href="/posts/a-very-simple-test-driven-development-tutorial">
+                                
+                                    Thoughts on TDD: A very simple Test Driven Development Tutorial
+                                
+                        </a>
+                    </div>
+                                 
+                    
+                 
+                </div>
+                 
+                <div id="disqus_thread"></div>
+<script>
+    /**
+    *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+    *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables    */
+    /*
+    var disqus_config = function () {
+    this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
+    this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+    };
+    */
+    (function() { // DON'T EDIT BELOW THIS LINE
+    var d = document, s = d.createElement('script');
+    s.src = 'https://notas-do-dia-a-dia-de-um-engenheiro-de-software.disqus.com/embed.js';
+    s.setAttribute('data-timestamp', +new Date());
+    (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+                <!-- Twitter universal website tag code -->
+<script>
+  !function(e,t,n,s,u,a){e.twq||(s=e.twq=function(){s.exe?s.exe.apply(s,arguments):s.queue.push(arguments);
+  },s.version='1.1',s.queue=[],u=t.createElement(n),u.async=!0,u.src='//static.ads-twitter.com/uwt.js',
+  a=t.getElementsByTagName(n)[0],a.parentNode.insertBefore(u,a))}(window,document,'script');
+  // Insert Twitter Pixel ID and Standard Event data below
+  twq('init','o5djb');
+  twq('track','PageView');
+  </script>
+  <!-- End Twitter universal website tag code -->
+            </div>
+        </div>
+    </div>
+ 
+    <footer class="footer">
+	<ul class="footer-links">
+		<li>
+			<div>
+				<script type="text/javascript" src="https://cdnjs.buymeacoffee.com/1.0.0/button.prod.min.js"
+					data-name="bmc-button" data-slug="vepo" data-color="#5F7FFF" data-emoji="" data-font="Cookie"
+					data-text="Buy me a coffee" data-outline-color="#000000" data-font-color="#ffffff"
+					data-coffee-color="#FFDD00"></script>
+			</div>
+		</li>
+		<li>
+			<a href="http://github.com/vepo"> 
+				<i class="fab fa-github fa-inverse fa-3x"></i>
+			</a>
+		</li>
+		<li>
+			<a href="http://www.linkedin.com/in/victorosorio">
+				<i class="fab fa-linkedin-in fa-inverse fa-3x"></i>
+			</a>
+		</li>
+		<li>
+			<a href="https://twitter.com/vepo">
+				<i class="fab fa-twitter fa-inverse fa-3x"></i>
+			</a>
+		</li>
+		<li>&nbsp;</li>
+	</ul>
+</footer>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-166943279-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag() { dataLayer.push(arguments); }
+  gtag('js', new Date());
+
+  gtag('config', 'UA-166943279-1');
+</script> 
+    <script src="/assets/js/adjustments.js" async></script>
+</body>
+
+</html>

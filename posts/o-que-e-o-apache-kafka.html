@@ -1,0 +1,1748 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="shortcut icon" type="image/png" href="/icon.png" />
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@vepo">
+  <meta name="twitter:creator" content="@vepo">
+  <meta name="google-site-verification" content="xw_kgncLhv22qVjTIPi7adALZre8FIHY02-DGCuYuZ4" />
+  
+  <!-- SEO stuff -->
+  
+  <title>Entendendo o Kafka: O que é o Apache Kafka</title>
+  <meta property="og:title" content="Entendendo o Kafka: O que é o Apache Kafka" />
+  <meta name="twitter:title" content="Entendendo o Kafka: O que é o Apache Kafka">
+  
+
+
+  
+  <meta name="description" content="Nesse artigo vou explicar brevemente o que é o Kafka e qual sua finalidade" />
+  <meta property="og:description" content="Nesse artigo vou explicar brevemente o que é o Kafka e qual sua finalidade" />
+  <meta name="twitter:description" content="Nesse artigo vou explicar brevemente o que é o Kafka e qual sua finalidade">
+  
+
+  
+  <meta name="keywords" content="Apache Kafka, Messaging, Middleware, Microsserviços">
+  
+
+  <link rel="canonical" href="https://vepo.github.io/posts/o-que-e-o-apache-kafka" />
+  <meta property="og:url" content="https://vepo.github.io/posts/o-que-e-o-apache-kafka" />
+  <meta name="twitter:url" content="https://vepo.github.io/posts/o-que-e-o-apache-kafka">
+
+  <meta property="og:site_name" content="Notas do dia a dia de um engenheiro de software" />
+
+  
+  <meta property="og:image" content="https://vepo.github.iohttps://dev-to-uploads.s3.amazonaws.com/i/s1fchqaeqgoj7wss2rfd.jpg" />
+  <meta name="twitter:image" content="https://vepo.github.iohttps://dev-to-uploads.s3.amazonaws.com/i/s1fchqaeqgoj7wss2rfd.jpg">
+  
+
+  
+  <!-- if it's an article -->
+  <meta property="og:type" content="article" />
+  
+  <meta property="article:published_time" content="2020-02-07T08:46:34+00:00" />
+  <meta property="article:modified_time" content="2020-02-07T08:46:34+00:00" />
+  
+
+  <meta content="https://www.linkedin.com/in/victorosorio/" property="article:author">
+
+  
+  
+  
+
+  
+  
+  <meta content="Apache Kafka" property="article:tag">
+  
+  <meta content="Messaging" property="article:tag">
+  
+  <meta content="Middleware" property="article:tag">
+  
+  <meta content="Microsserviços" property="article:tag">
+  
+  
+
+  <script type="application/ld+json">
+    {
+      "@context": "http://schema.org",
+      "@type": "BlogPosting",
+      "headline": "O que é o Apache Kafka",
+      "datePublished": "2020-02-07T08:46:34+00:00",
+      
+      "description": "Nesse artigo vou explicar brevemente o que é o Kafka e qual sua finalidade",
+      
+      
+      "sameAs" : [
+        "https://dev.to/vepo/o-que-e-o-apache-kafka-3kpk"
+      ],
+      
+      "url": "https://vepo.github.io/posts/o-que-e-o-apache-kafka"
+    }
+  </script>
+
+  
+
+  <link rel="author" href="https://www.linkedin.com/in/victorosorio/" />
+
+  <!-- End SEO stuff -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+  <link href="/assets/thirdy-party/fontawesome/css/all.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="/assets/css/main.css" />
+  <link href="/assets/css/syntax.css" rel="stylesheet">
+  
+  <script src="/assets/js/jquery.min.js"></script>
+  <script src="/assets/thirdy-party/fontawesome/js/all.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj" crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <div class="d-flex">
+        <div class="menu">
+        <script async src="/assets/js/menu.js"></script>
+<div class="enabler">
+	<li class="nav-item">
+		<a class="nav-link" aria-current="page" href="/">
+			Conteúdo&nbsp;<i class="fa fa-fist-raised"></i>
+		</a>
+	</li>
+</div>
+<div class="nav flex-column">
+	<li class="nav-item">
+		<a class="nav-link" aria-current="page" href="/">
+			Victor Osório&nbsp;<i class="fa fa-fist-raised home"></i>
+		</a>
+	</li>
+	
+		
+		<li class="nav-item">
+			<a class="nav-link" aria-current="page" href="#" 
+			   data-bs-toggle="collapse" data-bs-target="#container-collapse-pet-projects" 
+			   aria-expanded="false" aria-controls="container-collapse-pet-projects" >Pet Projects</a>
+			<div class="collapse submenu" id="container-collapse-pet-projects">
+				
+				<a class="nav-link" aria-current="page" href="/projects/csv-viewer">CSV Viewer</a>
+				
+				<a class="nav-link" aria-current="page" href="/projects/plain-test">Plain Test</a>
+				
+				<a class="nav-link" aria-current="page" href="/projects/kafka-tool">Kafka Tool</a>
+				
+			</div>
+		</li>		
+		
+	
+		
+		<li class="nav-item">
+			<a class="nav-link" aria-current="page" href="#" 
+			   data-bs-toggle="collapse" data-bs-target="#container-collapse-apresentações" 
+			   aria-expanded="false" aria-controls="container-collapse-apresentações" >Apresentações</a>
+			<div class="collapse submenu" id="container-collapse-apresentações">
+				
+				<a class="nav-link" aria-current="page" href="/presentations/2020-03-26-sou-java-kafka">Kafka: Uma introdução para Desenvolvedores e Arquitetos</a>
+				
+				<a class="nav-link" aria-current="page" href="/presentations/2019-09-14-sou-java-cdi">Usando Java CDI em projetos Jakarta EE ou Microprofile</a>
+				
+				<a class="nav-link" aria-current="page" href="/presentations/2021-08-26-a-filosofia-do-design-de-codigo">A Filosofia do Design de Código</a>
+				
+				<a class="nav-link" aria-current="page" href="/presentations/2021-06-10-diversidade-cultural">Diversidade Cultural? E isso importa?</a>
+				
+			</div>
+		</li>		
+		
+	
+		
+		<li class="nav-item">
+			<a class="nav-link" aria-current="page" href="/">Posts</a>
+		</li>
+		
+	
+		
+		<li class="nav-item">
+			<a class="nav-link" aria-current="page" href="/tags">Tags</a>
+		</li>
+		
+	
+		
+		<li class="nav-item">
+			<a class="nav-link" aria-current="page" href="/series">Séries</a>
+		</li>
+		
+	
+		
+		<li class="nav-item">
+			<a class="nav-link" aria-current="page" href="/about">Sobre</a>
+		</li>
+		
+	
+		
+		<li class="nav-item">
+			<a class="nav-link" aria-current="page" href="/books">Livros Recomendados</a>
+		</li>
+		
+	
+		
+		<li class="nav-item">
+			<a class="nav-link" aria-current="page" href="#" 
+			   data-bs-toggle="collapse" data-bs-target="#container-collapse-redes-sociais" 
+			   aria-expanded="false" aria-controls="container-collapse-redes-sociais" >Redes Sociais</a>
+			<div class="collapse submenu" id="container-collapse-redes-sociais">
+				
+				<a class="nav-link" aria-current="page" href="http://github.com/vepo">GitHub</a>
+				
+				<a class="nav-link" aria-current="page" href="http://www.linkedin.com/in/victorosorio">LinkedIn</a>
+				
+				<a class="nav-link" aria-current="page" href="https://twitter.com/vepo">Twitter</a>
+				
+			</div>
+		</li>		
+		
+	
+	<li class="nav-item">
+		<a class="nav-link" aria-current="page" href="https://twitter.com/vepo">
+			<i class="fab fa-twitter"></i> @vepo
+		</a>
+	</li>
+</div>
+<div align="center">
+	<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8088229614848913" crossorigin="anonymous"></script>
+	<!-- Homepage Leaderboard -->
+	<ins class="adsbygoogle"
+		 style="display:inline-block;width:168px;height:90px"
+		 data-ad-client="ca-pub-8088229614848913"
+	     data-ad-slot="1234567890"></ins>
+	<script>
+		(adsbygoogle = window.adsbygoogle || []).push({});
+	</script>
+</div>
+        </div>
+        
+        
+        <div class="flex-grow-1">
+            <div class="container post">
+                <div class="title">
+    
+    <h1 class="serie-title">
+        Entendendo o Kafka
+    </h1>
+    <h2>
+        O que é o Apache Kafka
+    </h2>
+    
+</div>
+<div class="cover-image">
+    
+    <img alt="O que é o Apache Kafka" src="https://dev-to-uploads.s3.amazonaws.com/i/s1fchqaeqgoj7wss2rfd.jpg" class="img-responsive" />
+    
+</div>
+                
+                <p>
+                    
+                    <strong>
+                        <time datetime="2020-02-07T08:46:34+00:00">
+                            February 07, 2020
+                        </time>
+                    </strong> 
+                    
+                </p>
+                <div class="tag-container">
+                    
+                    <a class="label label-default apache-kafka" href="/tags/#apache-kafka">Apache Kafka</a> 
+                    
+                    <a class="label label-default messaging" href="/tags/#messaging">Messaging</a> 
+                    
+                    <a class="label label-default middleware" href="/tags/#middleware">Middleware</a> 
+                    
+                    <a class="label label-default microsserviços" href="/tags/#microsserviços">Microsserviços</a> 
+                    
+                </div>
+                    
+                    
+                <div>
+                    Post originally published on <a href="https://dev.to/vepo/o-que-e-o-apache-kafka-3kpk">dev.to</a>.
+                </div>
+                    
+                <hr> 
+                
+                
+<div class="series">
+    <div class="serie-contents">
+        
+        <h2>
+            Entendendo o Kafka<br/>
+            <span class="description">(série de 6 partes)</span>
+        </h2>
+        
+            
+            <div class="serie-article selected">O que é o Apache Kafka</div>
+            
+        
+            
+            <a href="/posts/rodando-o-apache-kafka-localmente">
+                <div class="serie-article">Rodando o Apache Kafka localmente</div>
+            </a>
+            
+        
+            
+            <a href="/posts/enviando-mensagens">
+                <div class="serie-article">Enviando Mensagens</div>
+            </a>
+            
+        
+            
+            <a href="/posts/recebendo-mensagens">
+                <div class="serie-article">Recebendo Mensagens</div>
+            </a>
+            
+        
+            
+            <a href="/posts/anatomia-de-um-topico">
+                <div class="serie-article">Anatomia de um Tópico</div>
+            </a>
+            
+        
+            
+            <a href="/posts/log-cleanup-no-kafka">
+                <div class="serie-article">Log Cleanup no Kafka</div>
+            </a>
+            
+        
+    </div>
+</div>
+
+                <article>
+                    <p>Esse artigo é uma <a href="https://medium.com/@vepo/entendendo-o-kafka-bf64169e421f">reescrita de um que escrevi 2 anos atrás</a>. Naquela época estava tentando entender como funcionava esse middleware tão importante em sistemas distribuídos. Depois trabalhei na reestruturação de um sistema bem complexo usando Kafka como base de verdade.</p>
+
+<h1 id="o-que-é">O que é?</h1>
+
+<p>Antes de Entender o que é Kafka, precisamos entender um pouco de Sistemas Distribuídos.</p>
+
+<h2 id="pubsub">Pub/Sub</h2>
+
+<p>Dentre os padrões de arquiteturas de Sistemas Distribuídos há o <a href="https://cloud.google.com/pubsub/docs/overview?hl=pt-br">Pub/Sub</a>. Quando desenhamos um sistema, ao enviar uma mensagem, há duas questões básicas:</p>
+
+<ol>
+  <li>Para quem enviaremos?</li>
+  <li>Como enviaremos?</li>
+</ol>
+
+<p>Quando usamos APIs REST (ou gRPC) estamos limitados a conhecer o destinatário e enviar para todos os destinatários que estão esperando essa mensagem. Usando um middleware Pub/Sub não precisamos nos preocupar com isso.</p>
+
+<p>Em uma arquitetura Pub/Sub, temos duas perguntas básicas para fazer ao se enviar uma mensagem:</p>
+
+<ol>
+  <li>Para quais Tópicos enviaremos essa mensagem?</li>
+  <li>Qual o formato que será a mensagem?</li>
+</ol>
+
+<p>Pub/Sub é baseado no conceito de Tópico. Tópico é como se fosse um canal, quem subscreve a um Tópico irá receber todas as mensagens enviadas nele. Quem envia a mensagem não sabe quem irá receber, e vice versa! 🧐</p>
+
+<h2 id="o-kafka">O Kafka</h2>
+
+<p>Kafka estende o conceito de Pub/Sub ao seu limite. O que de certa forma por o tornar bem mais complexo que seus similares como <a href="https://www.rabbitmq.com/">RabbitMQ</a>, <a href="https://activemq.apache.org/">ActiveMQ</a>, ou o <a href="https://aws.amazon.com/pt/sqs/">SQS</a>/<a href="https://aws.amazon.com/pt/sns/">SNS</a> da Amazon.</p>
+
+<p>Com o Kafka você pode:</p>
+
+<ol>
+  <li>Configurar o tempo de armazenamento de cada Tópico.
+    <ul>
+      <li>Por padrão o <a href="http://kafka.apache.org/documentation/#topicconfigs">retention.ms</a> de um Tópico é configurado para 604800000 ms (7 dias!)</li>
+    </ul>
+  </li>
+  <li>Criar vários <em>Consumers</em> concorrentes e garantir a forma de funcionamento deles!
+    <ul>
+      <li>Uma Mensagem ser recebida por todos os <em>Consumers</em></li>
+      <li>Uma Mensagem ser recebida por apenas um <em>Consumer</em></li>
+      <li>Uma Mensagem ser recebida por <em>Consumers</em> Diferentes!</li>
+      <li>Etc… Com o Kafka qualquer tipo de configuração é possível</li>
+    </ul>
+  </li>
+  <li>Escalonamento fácil.
+    <ul>
+      <li>Fácil de adicionar um novo nó Kafka</li>
+      <li>Fácil de adicionar um novo <em>Consumer</em>/<em>Producer</em></li>
+    </ul>
+  </li>
+  <li>Reprocessamento de mensagens
+    <ul>
+      <li>É possível reprocessar todas as mensagens de um Tópico/<em>Consumer</em> específico</li>
+    </ul>
+  </li>
+  <li>Sem <a href="https://pt.wikipedia.org/wiki/Ponto_%C3%BAnico_de_falha">Ponto Único de Falha (SPOF)</a></li>
+  <li>Criar Streaming de Eventos</li>
+  <li>Tratar Streaming de Eventos como Base de Dados</li>
+</ol>
+
+<p>Essas duas últimas features são bastantes complexas e não devem ser utilizadas sem muito experimentação prévia.</p>
+
+<h1 id="referência-literária">Referência Literária</h1>
+
+<p>Há um termo comum que muitos não devem conhecer que é a <a href="https://www.jornalopcao.com.br/colunas-e-blogs/contraponto/burocracia-brasileira-e-mais-kafkiana-do-que-kafka-56504/">Burocracia Kafkaniana</a>. Talvez se você é que nem eu, que conhece a literatura de Franz Kafka, mas nunca a leu, só sabe que ele vira uma barata, você não saberá que ele tinha horror a burocracia e que isso está expresso nos livros dele.</p>
+
+<p>Talvez esse nome se refere ao problema que o Apache Kafka resolve. Seu sistema não precisa ser que nem Guichês do Detran, vai de um para outro, para outro… indefinidamente!!!</p>
+
+<p><img src="https://dev-to-uploads.s3.amazonaws.com/i/akka1r41bfnwlf4hrjpg.jpg" alt="A Barata" /></p>
+
+<h1 id="conclusão">Conclusão</h1>
+
+<p>Se você está construindo um sistema que demandará um nível de complexidade ainda desconhecido, mas já seguro que será bastante complexo. Você pode considerar de usar o Kafka para delegar a responsabilidade de integração de cada serviço.</p>
+
+<p>Com o Kafka, cada serviço deve se preocupar em:</p>
+
+<ol>
+  <li>Gerar Eventos</li>
+  <li>Ouvir os Eventos interessados</li>
+</ol>
+
+<p>Assim há um grande desacoplamento dos serviços. Você pode criar uma Loja virtual que apenas emite um evento de <em>CompraEfetuada</em> gerando assincronamente:</p>
+<ol>
+  <li>Um serviço de EmitirNotaFiscal</li>
+  <li>Um serviço de ProcessarPacote</li>
+  <li>Etc…</li>
+  <li>Etc… no tempo! Daqui a 1 semana você pode criar um novo serviço e usar TODOS esses eventos! 😊😊😊😊</li>
+</ol>
+
+<p><em>To be continue…</em></p>
+
+                </article>
+                
+<div class="series">
+    <div class="serie-contents">
+        
+        <h2>
+            Entendendo o Kafka<br/>
+            <span class="description">(série de 6 partes)</span>
+        </h2>
+        
+            
+            <div class="serie-article selected">O que é o Apache Kafka</div>
+            
+        
+            
+            <a href="/posts/rodando-o-apache-kafka-localmente">
+                <div class="serie-article">Rodando o Apache Kafka localmente</div>
+            </a>
+            
+        
+            
+            <a href="/posts/enviando-mensagens">
+                <div class="serie-article">Enviando Mensagens</div>
+            </a>
+            
+        
+            
+            <a href="/posts/recebendo-mensagens">
+                <div class="serie-article">Recebendo Mensagens</div>
+            </a>
+            
+        
+            
+            <a href="/posts/anatomia-de-um-topico">
+                <div class="serie-article">Anatomia de um Tópico</div>
+            </a>
+            
+        
+            
+            <a href="/posts/log-cleanup-no-kafka">
+                <div class="serie-article">Log Cleanup no Kafka</div>
+            </a>
+            
+        
+    </div>
+</div>
+
+                
+                <div class="published">
+                    
+                    <div>Originally published February 07, 2020</div>
+                    
+                </div>
+
+                
+                 
+                     
+                         
+                     
+                         
+                     
+                         
+                     
+                         
+                     
+                 
+                     
+                        
+                        
+                         
+                 
+                     
+                         
+                     
+                         
+                     
+                         
+                     
+                         
+                     
+                 
+                     
+                         
+                     
+                         
+                     
+                         
+                     
+                         
+                     
+                 
+                     
+                         
+                     
+                         
+                     
+                         
+                     
+                         
+                     
+                 
+                     
+                         
+                     
+                         
+                     
+                         
+                     
+                         
+                     
+                 
+                     
+                         
+                     
+                         
+                     
+                         
+                     
+                         
+                     
+                 
+                     
+                         
+                     
+                         
+                     
+                         
+                     
+                         
+                     
+                 
+                     
+                         
+                     
+                         
+                     
+                         
+                     
+                         
+                     
+                 
+                     
+                         
+                     
+                         
+                     
+                         
+                     
+                         
+                     
+                 
+                     
+                         
+                     
+                         
+                     
+                         
+                     
+                         
+                     
+                 
+                     
+                         
+                     
+                         
+                     
+                         
+                     
+                         
+                     
+                 
+                     
+                         
+                     
+                         
+                     
+                         
+                     
+                         
+                     
+                 
+                     
+                         
+                     
+                         
+                     
+                         
+                     
+                         
+                     
+                 
+                     
+                         
+                     
+                         
+                     
+                         
+                     
+                         
+                     
+                 
+                     
+                         
+                     
+                         
+                     
+                         
+                     
+                         
+                     
+                 
+                     
+                         
+                     
+                         
+                     
+                         
+                     
+                         
+                     
+                 
+                     
+                         
+                     
+                         
+                     
+                         
+                     
+                         
+                     
+                 
+                     
+                         
+                     
+                         
+                     
+                         
+                     
+                         
+                     
+                 
+                     
+                         
+                     
+                         
+                     
+                         
+                     
+                         
+                     
+                 
+                     
+                         
+                     
+                         
+                     
+                         
+                     
+                         
+                     
+                 
+                     
+                         
+                     
+                         
+                     
+                         
+                     
+                         
+                     
+                 
+                     
+                         
+                     
+                         
+                     
+                         
+                     
+                         
+                     
+                 
+                     
+                         
+                     
+                         
+                     
+                         
+                     
+                         
+                     
+                 
+                     
+                         
+                     
+                         
+                     
+                         
+                     
+                         
+                     
+                 
+                     
+                        
+                        
+                         
+                 
+                     
+                         
+                     
+                         
+                     
+                         
+                     
+                         
+                     
+                 
+                     
+                         
+                     
+                         
+                     
+                         
+                     
+                         
+                     
+                 
+                     
+                         
+                     
+                         
+                     
+                         
+                     
+                         
+                     
+                 
+                     
+                         
+                     
+                         
+                     
+                         
+                     
+                         
+                     
+                 
+                     
+                         
+                     
+                         
+                     
+                         
+                     
+                         
+                     
+                 
+                     
+                         
+                     
+                         
+                     
+                         
+                     
+                         
+                     
+                 
+                     
+                         
+                     
+                         
+                     
+                         
+                     
+                         
+                     
+                 
+                     
+                         
+                     
+                         
+                     
+                         
+                     
+                         
+                     
+                 
+                     
+                         
+                     
+                         
+                     
+                         
+                     
+                         
+                     
+                 
+                     
+                         
+                     
+                         
+                     
+                         
+                     
+                         
+                     
+                 
+                     
+                         
+                     
+                         
+                     
+                         
+                     
+                         
+                     
+                 
+                     
+                         
+                     
+                         
+                     
+                         
+                     
+                         
+                     
+                 
+                     
+                         
+                     
+                         
+                     
+                         
+                     
+                         
+                     
+                 
+                     
+                         
+                     
+                         
+                     
+                         
+                     
+                         
+                     
+                 
+                     
+                         
+                     
+                         
+                     
+                         
+                     
+                         
+                     
+                 
+                     
+                         
+                     
+                         
+                     
+                         
+                     
+                         
+                     
+                 
+                     
+                        
+                        
+                         
+                 
+                     
+                         
+                     
+                         
+                     
+                         
+                     
+                         
+                     
+                 
+                     
+                         
+                     
+                         
+                     
+                         
+                     
+                         
+                     
+                 
+                     
+                         
+                     
+                         
+                     
+                         
+                     
+                         
+                     
+                 
+                     
+                         
+                     
+                         
+                     
+                         
+                     
+                         
+                     
+                 
+                     
+                         
+                     
+                         
+                     
+                         
+                     
+                         
+                     
+                 
+                     
+                         
+                     
+                         
+                     
+                         
+                     
+                         
+                     
+                 
+                     
+                        
+                        
+                         
+                 
+                     
+                        
+                        
+                         
+                 
+                     
+                        
+                        
+                         
+                 
+                     
+                         
+                     
+                         
+                     
+                         
+                     
+                         
+                     
+                 
+                     
+                         
+                     
+                         
+                     
+                         
+                     
+                         
+                     
+                 
+                     
+                         
+                     
+                         
+                     
+                         
+                     
+                         
+                     
+                 
+                     
+                         
+                     
+                         
+                     
+                         
+                     
+                         
+                     
+                 
+                     
+                         
+                     
+                         
+                     
+                         
+                     
+                        
+                        
+                         
+                 
+                     
+                         
+                     
+                         
+                     
+                         
+                     
+                         
+                     
+                 
+                     
+                         
+                     
+                         
+                     
+                         
+                     
+                         
+                     
+                 
+                     
+                         
+                     
+                         
+                     
+                         
+                     
+                         
+                     
+                 
+                     
+                         
+                     
+                         
+                     
+                         
+                     
+                         
+                     
+                
+                
+                <div class="related-posts">
+                    <div class="related-post-header">Posts relacionados</div>
+                     
+                         
+                             
+                         
+                             
+                         
+                             
+                         
+                             
+                         
+                     
+                         
+                            
+                    <div class="related-post-item">
+                        <a href="/posts/event-driven-architecture">
+                                
+                                    Arquitetura Event-Driven
+                                
+                        </a>
+                    </div>
+                                 
+                     
+                         
+                             
+                         
+                             
+                         
+                             
+                         
+                             
+                         
+                     
+                         
+                             
+                         
+                             
+                         
+                             
+                         
+                             
+                         
+                     
+                         
+                             
+                         
+                             
+                         
+                             
+                         
+                             
+                         
+                     
+                         
+                             
+                         
+                             
+                         
+                             
+                         
+                             
+                         
+                     
+                         
+                             
+                         
+                             
+                         
+                             
+                         
+                             
+                         
+                     
+                         
+                             
+                         
+                             
+                         
+                             
+                         
+                             
+                         
+                     
+                         
+                             
+                         
+                             
+                         
+                             
+                         
+                             
+                         
+                     
+                         
+                             
+                         
+                             
+                         
+                             
+                         
+                             
+                         
+                     
+                         
+                             
+                         
+                             
+                         
+                             
+                         
+                             
+                         
+                     
+                         
+                             
+                         
+                             
+                         
+                             
+                         
+                             
+                         
+                     
+                         
+                             
+                         
+                             
+                         
+                             
+                         
+                             
+                         
+                     
+                         
+                             
+                         
+                             
+                         
+                             
+                         
+                             
+                         
+                     
+                         
+                             
+                         
+                             
+                         
+                             
+                         
+                             
+                         
+                     
+                         
+                             
+                         
+                             
+                         
+                             
+                         
+                             
+                         
+                     
+                         
+                             
+                         
+                             
+                         
+                             
+                         
+                             
+                         
+                     
+                         
+                             
+                         
+                             
+                         
+                             
+                         
+                             
+                         
+                     
+                         
+                             
+                         
+                             
+                         
+                             
+                         
+                             
+                         
+                     
+                         
+                             
+                         
+                             
+                         
+                             
+                         
+                             
+                         
+                     
+                         
+                             
+                         
+                             
+                         
+                             
+                         
+                             
+                         
+                     
+                         
+                             
+                         
+                             
+                         
+                             
+                         
+                             
+                         
+                     
+                         
+                             
+                         
+                             
+                         
+                             
+                         
+                             
+                         
+                     
+                         
+                             
+                         
+                             
+                         
+                             
+                         
+                             
+                         
+                     
+                         
+                             
+                         
+                             
+                         
+                             
+                         
+                             
+                         
+                     
+                         
+                            
+                    <div class="related-post-item">
+                        <a href="/posts/log-cleanup-no-kafka">
+                                
+                                    Entendendo o Kafka: Log Cleanup no Kafka
+                                
+                        </a>
+                    </div>
+                                 
+                     
+                         
+                             
+                         
+                             
+                         
+                             
+                         
+                             
+                         
+                     
+                         
+                             
+                         
+                             
+                         
+                             
+                         
+                             
+                         
+                     
+                         
+                             
+                         
+                             
+                         
+                             
+                         
+                             
+                         
+                     
+                         
+                             
+                         
+                             
+                         
+                             
+                         
+                             
+                         
+                     
+                         
+                             
+                         
+                             
+                         
+                             
+                         
+                             
+                         
+                     
+                         
+                             
+                         
+                             
+                         
+                             
+                         
+                             
+                         
+                     
+                         
+                             
+                         
+                             
+                         
+                             
+                         
+                             
+                         
+                     
+                         
+                             
+                         
+                             
+                         
+                             
+                         
+                             
+                         
+                     
+                         
+                             
+                         
+                             
+                         
+                             
+                         
+                             
+                         
+                     
+                         
+                             
+                         
+                             
+                         
+                             
+                         
+                             
+                         
+                     
+                         
+                             
+                         
+                             
+                         
+                             
+                         
+                             
+                         
+                     
+                         
+                             
+                         
+                             
+                         
+                             
+                         
+                             
+                         
+                     
+                         
+                             
+                         
+                             
+                         
+                             
+                         
+                             
+                         
+                     
+                         
+                             
+                         
+                             
+                         
+                             
+                         
+                             
+                         
+                     
+                         
+                             
+                         
+                             
+                         
+                             
+                         
+                             
+                         
+                     
+                         
+                             
+                         
+                             
+                         
+                             
+                         
+                             
+                         
+                     
+                         
+                            
+                    <div class="related-post-item">
+                        <a href="/posts/anatomia-de-um-topico">
+                                
+                                    Entendendo o Kafka: Anatomia de um Tópico
+                                
+                        </a>
+                    </div>
+                                 
+                     
+                         
+                             
+                         
+                             
+                         
+                             
+                         
+                             
+                         
+                     
+                         
+                             
+                         
+                             
+                         
+                             
+                         
+                             
+                         
+                     
+                         
+                             
+                         
+                             
+                         
+                             
+                         
+                             
+                         
+                     
+                         
+                             
+                         
+                             
+                         
+                             
+                         
+                             
+                         
+                     
+                         
+                             
+                         
+                             
+                         
+                             
+                         
+                             
+                         
+                     
+                         
+                             
+                         
+                             
+                         
+                             
+                         
+                             
+                         
+                     
+                         
+                            
+                    <div class="related-post-item">
+                        <a href="/posts/recebendo-mensagens">
+                                
+                                    Entendendo o Kafka: Recebendo Mensagens
+                                
+                        </a>
+                    </div>
+                                 
+                     
+                         
+                            
+                    <div class="related-post-item">
+                        <a href="/posts/enviando-mensagens">
+                                
+                                    Entendendo o Kafka: Enviando Mensagens
+                                
+                        </a>
+                    </div>
+                                 
+                     
+                         
+                            
+                    <div class="related-post-item">
+                        <a href="/posts/rodando-o-apache-kafka-localmente">
+                                
+                                    Entendendo o Kafka: Rodando o Apache Kafka localmente
+                                
+                        </a>
+                    </div>
+                                 
+                     
+                         
+                             
+                         
+                             
+                         
+                             
+                         
+                             
+                         
+                     
+                         
+                             
+                         
+                             
+                         
+                             
+                         
+                             
+                         
+                     
+                         
+                             
+                         
+                             
+                         
+                             
+                         
+                             
+                         
+                     
+                         
+                             
+                         
+                             
+                         
+                             
+                         
+                             
+                         
+                     
+                         
+                             
+                         
+                             
+                         
+                             
+                         
+                            
+                    <div class="related-post-item">
+                        <a href="/posts/microsservicos-e-fordismo">
+                                
+                                    Microsserviços e Fordismo
+                                
+                        </a>
+                    </div>
+                                 
+                     
+                         
+                             
+                         
+                             
+                         
+                             
+                         
+                             
+                         
+                     
+                         
+                             
+                         
+                             
+                         
+                             
+                         
+                             
+                         
+                     
+                         
+                             
+                         
+                             
+                         
+                             
+                         
+                             
+                         
+                     
+                         
+                             
+                         
+                             
+                         
+                             
+                         
+                             
+                         
+                    
+                 
+                </div>
+                 
+                <div id="disqus_thread"></div>
+<script>
+    /**
+    *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+    *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables    */
+    /*
+    var disqus_config = function () {
+    this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
+    this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+    };
+    */
+    (function() { // DON'T EDIT BELOW THIS LINE
+    var d = document, s = d.createElement('script');
+    s.src = 'https://notas-do-dia-a-dia-de-um-engenheiro-de-software.disqus.com/embed.js';
+    s.setAttribute('data-timestamp', +new Date());
+    (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+                <!-- Twitter universal website tag code -->
+<script>
+  !function(e,t,n,s,u,a){e.twq||(s=e.twq=function(){s.exe?s.exe.apply(s,arguments):s.queue.push(arguments);
+  },s.version='1.1',s.queue=[],u=t.createElement(n),u.async=!0,u.src='//static.ads-twitter.com/uwt.js',
+  a=t.getElementsByTagName(n)[0],a.parentNode.insertBefore(u,a))}(window,document,'script');
+  // Insert Twitter Pixel ID and Standard Event data below
+  twq('init','o5djb');
+  twq('track','PageView');
+  </script>
+  <!-- End Twitter universal website tag code -->
+            </div>
+        </div>
+    </div>
+ 
+    <footer class="footer">
+	<ul class="footer-links">
+		<li>
+			<div>
+				<script type="text/javascript" src="https://cdnjs.buymeacoffee.com/1.0.0/button.prod.min.js"
+					data-name="bmc-button" data-slug="vepo" data-color="#5F7FFF" data-emoji="" data-font="Cookie"
+					data-text="Buy me a coffee" data-outline-color="#000000" data-font-color="#ffffff"
+					data-coffee-color="#FFDD00"></script>
+			</div>
+		</li>
+		<li>
+			<a href="http://github.com/vepo"> 
+				<i class="fab fa-github fa-inverse fa-3x"></i>
+			</a>
+		</li>
+		<li>
+			<a href="http://www.linkedin.com/in/victorosorio">
+				<i class="fab fa-linkedin-in fa-inverse fa-3x"></i>
+			</a>
+		</li>
+		<li>
+			<a href="https://twitter.com/vepo">
+				<i class="fab fa-twitter fa-inverse fa-3x"></i>
+			</a>
+		</li>
+		<li>&nbsp;</li>
+	</ul>
+</footer>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-166943279-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag() { dataLayer.push(arguments); }
+  gtag('js', new Date());
+
+  gtag('config', 'UA-166943279-1');
+</script> 
+    <script src="/assets/js/adjustments.js" async></script>
+</body>
+
+</html>

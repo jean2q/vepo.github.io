@@ -1,0 +1,937 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="shortcut icon" type="image/png" href="/icon.png" />
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@vepo">
+  <meta name="twitter:creator" content="@vepo">
+  <meta name="google-site-verification" content="xw_kgncLhv22qVjTIPi7adALZre8FIHY02-DGCuYuZ4" />
+  
+  <!-- SEO stuff -->
+  
+  <title>Notas do dia a dia de um engenheiro de software</title>
+  <meta property="og:title" content="Notas do dia a dia de um engenheiro de software" />
+  <meta name="twitter:title" content="Notas do dia a dia de um engenheiro de software">
+  
+
+
+  
+  <meta name="description" content="Um repositório para todos os posts, palestras e tutoriais que já fiz. Java, Desenvolvimento de Software e reflexões sobre filosofia" />
+  <meta property="og:description" content="Um repositório para todos os posts, palestras e tutoriais que já fiz. Java, Desenvolvimento de Software e reflexões sobre filosofia" />
+  <meta name="twitter:description" content="Um repositório para todos os posts, palestras e tutoriais que já fiz. Java, Desenvolvimento de Software e reflexões sobre filosofia">
+  
+
+   
+  <meta name="keywords" content="Software Development, Java, Apache Kafka, Desenvolvimento de Software, Jakarta EE, TDD, Microsserviçoes">
+  
+
+  <link rel="canonical" href="https://vepo.github.io/pag-4/" />
+  <meta property="og:url" content="https://vepo.github.io/pag-4/" />
+  <meta name="twitter:url" content="https://vepo.github.io/pag-4/">
+
+  <meta property="og:site_name" content="Notas do dia a dia de um engenheiro de software" />
+
+  
+  <meta property="og:image" content="https://vepo.github.io/assets/images//top.jpg" />
+  <meta name="twitter:image" content="https://vepo.github.io/assets/images//top.jpg">
+  
+
+  
+  <!-- its not an article -->
+  <meta property="og:type" content="website" />
+
+  <script type="application/ld+json">
+  {
+    "@context": "http://schema.org",
+    "@type": "WebSite",
+    "headline": "Notas do dia a dia de um engenheiro de software",
+    
+    "description": "Um repositório para todos os posts, palestras e tutoriais que já fiz. Java, Desenvolvimento de Software e reflexões sobre filosofia",
+    
+    "url": "https://vepo.github.io/pag-4/",
+    "sameAs" : [
+      "https://twitter.com/vepo",
+      "https://www.linkedin.com/in/victorosorio/",
+      "https://medium.com/@vepo",
+      "https://dev.to/vepo/"
+    ]
+  }
+</script>
+  
+
+  <link rel="author" href="https://www.linkedin.com/in/victorosorio/" />
+
+  <!-- End SEO stuff -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+  <link href="/assets/thirdy-party/fontawesome/css/all.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="/assets/css/main.css" />
+  <link href="/assets/css/syntax.css" rel="stylesheet">
+  
+  <script src="/assets/js/jquery.min.js"></script>
+  <script src="/assets/thirdy-party/fontawesome/js/all.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj" crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <div class="d-flex">
+        <div class="menu">
+        <script async src="/assets/js/menu.js"></script>
+<div class="enabler">
+	<li class="nav-item">
+		<a class="nav-link" aria-current="page" href="/">
+			Conteúdo&nbsp;<i class="fa fa-fist-raised"></i>
+		</a>
+	</li>
+</div>
+<div class="nav flex-column">
+	<li class="nav-item">
+		<a class="nav-link" aria-current="page" href="/">
+			Victor Osório&nbsp;<i class="fa fa-fist-raised home"></i>
+		</a>
+	</li>
+	
+		
+		<li class="nav-item">
+			<a class="nav-link" aria-current="page" href="#" 
+			   data-bs-toggle="collapse" data-bs-target="#container-collapse-pet-projects" 
+			   aria-expanded="false" aria-controls="container-collapse-pet-projects" >Pet Projects</a>
+			<div class="collapse submenu" id="container-collapse-pet-projects">
+				
+				<a class="nav-link" aria-current="page" href="/projects/csv-viewer">CSV Viewer</a>
+				
+				<a class="nav-link" aria-current="page" href="/projects/plain-test">Plain Test</a>
+				
+				<a class="nav-link" aria-current="page" href="/projects/kafka-tool">Kafka Tool</a>
+				
+			</div>
+		</li>		
+		
+	
+		
+		<li class="nav-item">
+			<a class="nav-link" aria-current="page" href="#" 
+			   data-bs-toggle="collapse" data-bs-target="#container-collapse-apresentações" 
+			   aria-expanded="false" aria-controls="container-collapse-apresentações" >Apresentações</a>
+			<div class="collapse submenu" id="container-collapse-apresentações">
+				
+				<a class="nav-link" aria-current="page" href="/presentations/2020-03-26-sou-java-kafka">Kafka: Uma introdução para Desenvolvedores e Arquitetos</a>
+				
+				<a class="nav-link" aria-current="page" href="/presentations/2019-09-14-sou-java-cdi">Usando Java CDI em projetos Jakarta EE ou Microprofile</a>
+				
+				<a class="nav-link" aria-current="page" href="/presentations/2021-08-26-a-filosofia-do-design-de-codigo">A Filosofia do Design de Código</a>
+				
+				<a class="nav-link" aria-current="page" href="/presentations/2021-06-10-diversidade-cultural">Diversidade Cultural? E isso importa?</a>
+				
+			</div>
+		</li>		
+		
+	
+		
+		<li class="nav-item">
+			<a class="nav-link" aria-current="page" href="/">Posts</a>
+		</li>
+		
+	
+		
+		<li class="nav-item">
+			<a class="nav-link" aria-current="page" href="/tags">Tags</a>
+		</li>
+		
+	
+		
+		<li class="nav-item">
+			<a class="nav-link" aria-current="page" href="/series">Séries</a>
+		</li>
+		
+	
+		
+		<li class="nav-item">
+			<a class="nav-link" aria-current="page" href="/about">Sobre</a>
+		</li>
+		
+	
+		
+		<li class="nav-item">
+			<a class="nav-link" aria-current="page" href="/books">Livros Recomendados</a>
+		</li>
+		
+	
+		
+		<li class="nav-item">
+			<a class="nav-link" aria-current="page" href="#" 
+			   data-bs-toggle="collapse" data-bs-target="#container-collapse-redes-sociais" 
+			   aria-expanded="false" aria-controls="container-collapse-redes-sociais" >Redes Sociais</a>
+			<div class="collapse submenu" id="container-collapse-redes-sociais">
+				
+				<a class="nav-link" aria-current="page" href="http://github.com/vepo">GitHub</a>
+				
+				<a class="nav-link" aria-current="page" href="http://www.linkedin.com/in/victorosorio">LinkedIn</a>
+				
+				<a class="nav-link" aria-current="page" href="https://twitter.com/vepo">Twitter</a>
+				
+			</div>
+		</li>		
+		
+	
+	<li class="nav-item">
+		<a class="nav-link" aria-current="page" href="https://twitter.com/vepo">
+			<i class="fab fa-twitter"></i> @vepo
+		</a>
+	</li>
+</div>
+<div align="center">
+	<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8088229614848913" crossorigin="anonymous"></script>
+	<!-- Homepage Leaderboard -->
+	<ins class="adsbygoogle"
+		 style="display:inline-block;width:168px;height:90px"
+		 data-ad-client="ca-pub-8088229614848913"
+	     data-ad-slot="1234567890"></ins>
+	<script>
+		(adsbygoogle = window.adsbygoogle || []).push({});
+	</script>
+</div>
+        </div>
+        
+        
+        <div class="flex-grow-1">
+            <div class="container">
+                <div class="title">
+    
+    <h1 class="serie-title">
+        Notas do dia a dia de um engenheiro de software
+    </h1>
+    
+</div>
+<div class="cover-image">
+    
+    <img alt="Notas do dia a dia de um engenheiro de software" src="/assets/images//top.jpg" class="img-responsive" />
+    
+</div>
+                
+                
+                <article>
+                    <!-- Pagination links -->
+<div class="pagination">
+	
+	<a href="/pag-3">
+		Anterior
+	</a>
+	
+	&nbsp;
+	|
+	&nbsp;
+	<span class="page_number ">
+		Página: 4 de 5
+	</span>
+	&nbsp;
+	|
+	&nbsp;
+	
+	<a href="/pag-5">Próximo</a>
+	
+</div>
+
+<div class="list-group">
+	
+	
+	<div class="list-group-item">
+		<a href="/posts/design-patterns-e-se-alguem-ja-tiver-resolvido-seu-problema">
+			
+			<h4 class="list-group-item-heading">Coisas que todo Sênior deve saber: Design Patterns. E se alguém já tiver resolvido seu problema?</h4>
+			
+			<h6 class="list-group-item-heading">
+				<time datetime="2020-05-06T12:39:52+00:00">
+					May 06, 2020
+				</time>
+			</h6>
+		</a>
+		<div class="tag-container">
+			
+			<a class="label label-default desenvolvimento-de-software" href="/tags/#desenvolvimento-de-software">
+				<i class="fas fa-tags"></i>
+				Desenvolvimento de Software
+			</a>
+			
+			<a class="label label-default design-patterns" href="/tags/#design-patterns">
+				<i class="fas fa-tags"></i>
+				Design Patterns
+			</a>
+			
+			<a class="label label-default padrões-de-projeto" href="/tags/#padrões-de-projeto">
+				<i class="fas fa-tags"></i>
+				Padrões de Projeto
+			</a>
+			
+			<a class="label label-default clean-code" href="/tags/#clean-code">
+				<i class="fas fa-tags"></i>
+				Clean Code
+			</a>
+			
+		</div>
+		
+		<div class="cover-image">
+			<img alt="Design Patterns. E se alguém já tiver resolvido seu problema?" src="https://dev-to-uploads.s3.amazonaws.com/i/6dnvy0nb4j8aj57f3xs3.jpg" class="img-responsive">
+		</div>
+		
+		<p>Todo Sênior deve conhecer ao menos um Padrão de Projeto. Aqui apresento o que são e como um deles me ajudou em 2006.</p>
+	</div>
+	
+	
+	
+	<div class="list-group-item">
+		<a href="/posts/trabalhando-com-dinheiro">
+			
+			<h4 class="list-group-item-heading">Coisas que todo Sênior deve saber: Trabalhando com dinheiro!</h4>
+			
+			<h6 class="list-group-item-heading">
+				<time datetime="2020-05-05T13:10:09+00:00">
+					May 05, 2020
+				</time>
+			</h6>
+		</a>
+		<div class="tag-container">
+			
+			<a class="label label-default java" href="/tags/#java">
+				<i class="fas fa-tags"></i>
+				Java
+			</a>
+			
+			<a class="label label-default floating-point" href="/tags/#floating-point">
+				<i class="fas fa-tags"></i>
+				Floating Point
+			</a>
+			
+			<a class="label label-default money" href="/tags/#money">
+				<i class="fas fa-tags"></i>
+				Money
+			</a>
+			
+			<a class="label label-default beginners" href="/tags/#beginners">
+				<i class="fas fa-tags"></i>
+				Beginners
+			</a>
+			
+		</div>
+		
+		<div class="cover-image">
+			<img alt="Trabalhando com dinheiro!" src="https://dev-to-uploads.s3.amazonaws.com/i/bk2r12dz9vix7ya9ee2f.jpg" class="img-responsive">
+		</div>
+		
+		<p>Todo sênio deve saber lidar com valores monetários em seu código. Não sabe? Tem ensino! 😀</p>
+	</div>
+	
+	
+	
+	<div class="list-group-item">
+		<a href="/posts/como-criar-uma-linguagem-usando-antlr4-e-java">
+			
+			<h4 class="list-group-item-heading">Como criar uma linguagem usando ANTLR4 e Java</h4>
+			
+			<h6 class="list-group-item-heading">
+				<time datetime="2020-04-13T17:44:31+00:00">
+					April 13, 2020
+				</time>
+			</h6>
+		</a>
+		<div class="tag-container">
+			
+			<a class="label label-default java" href="/tags/#java">
+				<i class="fas fa-tags"></i>
+				Java
+			</a>
+			
+			<a class="label label-default parser" href="/tags/#parser">
+				<i class="fas fa-tags"></i>
+				Parser
+			</a>
+			
+			<a class="label label-default antlr4" href="/tags/#antlr4">
+				<i class="fas fa-tags"></i>
+				ANTLR4
+			</a>
+			
+			<a class="label label-default tutorial" href="/tags/#tutorial">
+				<i class="fas fa-tags"></i>
+				Tutorial
+			</a>
+			
+		</div>
+		
+		<div class="cover-image">
+			<img alt="Como criar uma linguagem usando ANTLR4 e Java" src="https://dev-to-uploads.s3.amazonaws.com/i/uy5s6zeks2rt6gmyni63.png" class="img-responsive">
+		</div>
+		
+		<p>Nesse post ensinarei como criar uma linguagem, não de programação, usando ANTLR4 em Java.</p>
+	</div>
+	
+	
+	
+	<div class="list-group-item">
+		<a href="/posts/a-rede-social-e-a-democracia">
+			
+			<h4 class="list-group-item-heading">A Sociedade Tecnológica no Século XXI: A Rede Social e a Democracia</h4>
+			
+			<h6 class="list-group-item-heading">
+				<time datetime="2020-03-06T16:00:00+00:00">
+					March 06, 2020
+				</time>
+			</h6>
+		</a>
+		<div class="tag-container">
+			
+			<a class="label label-default facebook" href="/tags/#facebook">
+				<i class="fas fa-tags"></i>
+				Facebook
+			</a>
+			
+			<a class="label label-default jacques-ellul" href="/tags/#jacques-ellul">
+				<i class="fas fa-tags"></i>
+				Jacques Ellul
+			</a>
+			
+			<a class="label label-default democracia" href="/tags/#democracia">
+				<i class="fas fa-tags"></i>
+				Democracia
+			</a>
+			
+			<a class="label label-default man-in-the-middle-attack" href="/tags/#man-in-the-middle-attack">
+				<i class="fas fa-tags"></i>
+				Man In The Middle Attack
+			</a>
+			
+			<a class="label label-default graph-api" href="/tags/#graph-api">
+				<i class="fas fa-tags"></i>
+				Graph API
+			</a>
+			
+		</div>
+		
+		<div class="cover-image">
+			<img alt="A Rede Social e a Democracia" src="https://miro.medium.com/max/1280/1*E_5f28g2Sa_JOzxXirkmEg.jpeg" class="img-responsive">
+		</div>
+		
+		<p>Como o Facebook pode ameaçar a democracia</p>
+	</div>
+	
+	
+	
+	<div class="list-group-item">
+		<a href="/posts/recebendo-mensagens">
+			
+			<h4 class="list-group-item-heading">Entendendo o Kafka: Recebendo Mensagens</h4>
+			
+			<h6 class="list-group-item-heading">
+				<time datetime="2020-02-07T13:01:26+00:00">
+					February 07, 2020
+				</time>
+			</h6>
+		</a>
+		<div class="tag-container">
+			
+			<a class="label label-default apache-kafka" href="/tags/#apache-kafka">
+				<i class="fas fa-tags"></i>
+				Apache Kafka
+			</a>
+			
+			<a class="label label-default messaging" href="/tags/#messaging">
+				<i class="fas fa-tags"></i>
+				Messaging
+			</a>
+			
+			<a class="label label-default middleware" href="/tags/#middleware">
+				<i class="fas fa-tags"></i>
+				Middleware
+			</a>
+			
+			<a class="label label-default microsserviços" href="/tags/#microsserviços">
+				<i class="fas fa-tags"></i>
+				Microsserviços
+			</a>
+			
+		</div>
+		
+		<div class="cover-image">
+			<img alt="Recebendo Mensagens" src="https://dev-to-uploads.s3.amazonaws.com/i/9qhf82wsvoi0ibnsi1gb.jpg" class="img-responsive">
+		</div>
+		
+		<p>Exemplo de como receber uma mensagem para um broker Kafka</p>
+	</div>
+	
+	
+	
+	<div class="list-group-item">
+		<a href="/posts/enviando-mensagens">
+			
+			<h4 class="list-group-item-heading">Entendendo o Kafka: Enviando Mensagens</h4>
+			
+			<h6 class="list-group-item-heading">
+				<time datetime="2020-02-07T11:09:55+00:00">
+					February 07, 2020
+				</time>
+			</h6>
+		</a>
+		<div class="tag-container">
+			
+			<a class="label label-default apache-kafka" href="/tags/#apache-kafka">
+				<i class="fas fa-tags"></i>
+				Apache Kafka
+			</a>
+			
+			<a class="label label-default messaging" href="/tags/#messaging">
+				<i class="fas fa-tags"></i>
+				Messaging
+			</a>
+			
+			<a class="label label-default middleware" href="/tags/#middleware">
+				<i class="fas fa-tags"></i>
+				Middleware
+			</a>
+			
+			<a class="label label-default microsserviços" href="/tags/#microsserviços">
+				<i class="fas fa-tags"></i>
+				Microsserviços
+			</a>
+			
+		</div>
+		
+		<div class="cover-image">
+			<img alt="Enviando Mensagens" src="https://dev-to-uploads.s3.amazonaws.com/i/g87dtn83anqssn9yw4q6.jpg" class="img-responsive">
+		</div>
+		
+		<p>Exemplo de como enviar uma mensagem para um broker Kafka</p>
+	</div>
+	
+	
+	
+	<div class="list-group-item">
+		<a href="/posts/rodando-o-apache-kafka-localmente">
+			
+			<h4 class="list-group-item-heading">Entendendo o Kafka: Rodando o Apache Kafka localmente</h4>
+			
+			<h6 class="list-group-item-heading">
+				<time datetime="2020-02-07T08:47:27+00:00">
+					February 07, 2020
+				</time>
+			</h6>
+		</a>
+		<div class="tag-container">
+			
+			<a class="label label-default apache-kafka" href="/tags/#apache-kafka">
+				<i class="fas fa-tags"></i>
+				Apache Kafka
+			</a>
+			
+			<a class="label label-default messaging" href="/tags/#messaging">
+				<i class="fas fa-tags"></i>
+				Messaging
+			</a>
+			
+			<a class="label label-default middleware" href="/tags/#middleware">
+				<i class="fas fa-tags"></i>
+				Middleware
+			</a>
+			
+			<a class="label label-default microsserviços" href="/tags/#microsserviços">
+				<i class="fas fa-tags"></i>
+				Microsserviços
+			</a>
+			
+		</div>
+		
+		<div class="cover-image">
+			<img alt="Rodando o Apache Kafka localmente" src="https://dev-to-uploads.s3.amazonaws.com/i/vjb2xa2hwzvtgdks1x9v.png" class="img-responsive">
+		</div>
+		
+		<p>Nesse artigo, vou mostrar como rodar localmente o Kafka em uma Máquina Windows.</p>
+	</div>
+	
+	
+	
+	<div class="list-group-item">
+		<a href="/posts/o-que-e-o-apache-kafka">
+			
+			<h4 class="list-group-item-heading">Entendendo o Kafka: O que é o Apache Kafka</h4>
+			
+			<h6 class="list-group-item-heading">
+				<time datetime="2020-02-07T08:46:34+00:00">
+					February 07, 2020
+				</time>
+			</h6>
+		</a>
+		<div class="tag-container">
+			
+			<a class="label label-default apache-kafka" href="/tags/#apache-kafka">
+				<i class="fas fa-tags"></i>
+				Apache Kafka
+			</a>
+			
+			<a class="label label-default messaging" href="/tags/#messaging">
+				<i class="fas fa-tags"></i>
+				Messaging
+			</a>
+			
+			<a class="label label-default middleware" href="/tags/#middleware">
+				<i class="fas fa-tags"></i>
+				Middleware
+			</a>
+			
+			<a class="label label-default microsserviços" href="/tags/#microsserviços">
+				<i class="fas fa-tags"></i>
+				Microsserviços
+			</a>
+			
+		</div>
+		
+		<div class="cover-image">
+			<img alt="O que é o Apache Kafka" src="https://dev-to-uploads.s3.amazonaws.com/i/s1fchqaeqgoj7wss2rfd.jpg" class="img-responsive">
+		</div>
+		
+		<p>Nesse artigo vou explicar brevemente o que é o Kafka e qual sua finalidade</p>
+	</div>
+	
+	
+	
+	<div class="list-group-item">
+		<a href="/posts/algorithms-an-introduction">
+			
+			<h4 class="list-group-item-heading">Algorithms: Algorithms - An introduction</h4>
+			
+			<h6 class="list-group-item-heading">
+				<time datetime="2020-01-09T09:47:30+00:00">
+					January 09, 2020
+				</time>
+			</h6>
+		</a>
+		<div class="tag-container">
+			
+			<a class="label label-default algorithms" href="/tags/#algorithms">
+				<i class="fas fa-tags"></i>
+				Algorithms
+			</a>
+			
+			<a class="label label-default computer-science" href="/tags/#computer-science">
+				<i class="fas fa-tags"></i>
+				Computer Science
+			</a>
+			
+		</div>
+		
+		<div class="cover-image">
+			<img alt="Algorithms - An introduction" src="https://thepracticaldev.s3.amazonaws.com/i/r4m1fxs9otr17hcqfcq9.png" class="img-responsive">
+		</div>
+		
+		<p>What is an algorithm? How can we define an algorithm?</p>
+	</div>
+	
+	
+	
+	<div class="list-group-item">
+		<a href="/posts/escolhendo-uma-implementacao-jakarta-ee-e-microprofile-io">
+			
+			<h4 class="list-group-item-heading">Especificações Jakarta EE & Microprofile.io: Escolhendo uma implementação Jakarta EE & Microprofile.io</h4>
+			
+			<h6 class="list-group-item-heading">
+				<time datetime="2019-09-30T07:28:52+00:00">
+					September 30, 2019
+				</time>
+			</h6>
+		</a>
+		<div class="tag-container">
+			
+			<a class="label label-default jakarta-ee" href="/tags/#jakarta-ee">
+				<i class="fas fa-tags"></i>
+				Jakarta-EE
+			</a>
+			
+			<a class="label label-default java-ee" href="/tags/#java-ee">
+				<i class="fas fa-tags"></i>
+				Java-EE
+			</a>
+			
+			<a class="label label-default java" href="/tags/#java">
+				<i class="fas fa-tags"></i>
+				Java
+			</a>
+			
+			<a class="label label-default framework" href="/tags/#framework">
+				<i class="fas fa-tags"></i>
+				Framework
+			</a>
+			
+		</div>
+		
+		<div class="cover-image">
+			<img alt="Escolhendo uma implementação Jakarta EE & Microprofile.io" src="https://thepracticaldev.s3.amazonaws.com/i/rt90zdwn2g9yaf3hifpl.jpeg" class="img-responsive">
+		</div>
+		
+		<p>Tutorial de como escolher uma implementação para Microprofile.io ou Jakarta EE. Será atualizado sempre com novas informações.</p>
+	</div>
+	
+	
+	
+	
+	
+	<div class="list-group-item">
+		<a href="/posts/microsservicos-e-fordismo">
+			
+			<h4 class="list-group-item-heading">Microsserviços e Fordismo</h4>
+			
+			<h6 class="list-group-item-heading">
+				<time datetime="2019-07-27T07:30:35+00:00">
+					July 27, 2019
+				</time>
+			</h6>
+		</a>
+		<div class="tag-container">
+			
+			<a class="label label-default citações" href="/tags/#citações">
+				<i class="fas fa-tags"></i>
+				Citações
+			</a>
+			
+			<a class="label label-default microsserviços" href="/tags/#microsserviços">
+				<i class="fas fa-tags"></i>
+				Microsserviços
+			</a>
+			
+			<a class="label label-default desenvolvimento" href="/tags/#desenvolvimento">
+				<i class="fas fa-tags"></i>
+				Desenvolvimento
+			</a>
+			
+		</div>
+		
+		<div class="cover-image">
+			<img alt="Microsserviços e Fordismo" src="https://thepracticaldev.s3.amazonaws.com/i/4ld5ndu9osmfj71y27v0.jpg" class="img-responsive">
+		</div>
+		
+		<p></p>
+	</div>
+	
+	
+	
+	<div class="list-group-item">
+		<a href="/posts/tests-and-requirements">
+			
+			<h4 class="list-group-item-heading">Thoughts on TDD: Tests and Requirements</h4>
+			
+			<h6 class="list-group-item-heading">
+				<time datetime="2019-07-24T10:24:59+00:00">
+					July 24, 2019
+				</time>
+			</h6>
+		</a>
+		<div class="tag-container">
+			
+			<a class="label label-default java" href="/tags/#java">
+				<i class="fas fa-tags"></i>
+				Java
+			</a>
+			
+			<a class="label label-default tdd" href="/tags/#tdd">
+				<i class="fas fa-tags"></i>
+				TDD
+			</a>
+			
+			<a class="label label-default bugs" href="/tags/#bugs">
+				<i class="fas fa-tags"></i>
+				Bugs
+			</a>
+			
+			<a class="label label-default requirement" href="/tags/#requirement">
+				<i class="fas fa-tags"></i>
+				Requirement
+			</a>
+			
+		</div>
+		
+		<div class="cover-image">
+			<img alt="Tests and Requirements" src="https://cdn.pixabay.com/photo/2015/05/11/13/28/software-762486_960_720.jpg" class="img-responsive">
+		</div>
+		
+		<p>How can we ensure that any new development does not create an undesired behaviour?</p>
+	</div>
+	
+	
+	
+	<div class="list-group-item">
+		<a href="/posts/start-a-project-by-the-readme">
+			
+			<h4 class="list-group-item-heading">Start a project by the README</h4>
+			
+			<h6 class="list-group-item-heading">
+				<time datetime="2019-06-25T11:07:06+00:00">
+					June 25, 2019
+				</time>
+			</h6>
+		</a>
+		<div class="tag-container">
+			
+			<a class="label label-default software-documentation" href="/tags/#software-documentation">
+				<i class="fas fa-tags"></i>
+				Software Documentation
+			</a>
+			
+			<a class="label label-default readme" href="/tags/#readme">
+				<i class="fas fa-tags"></i>
+				README
+			</a>
+			
+			<a class="label label-default documentation" href="/tags/#documentation">
+				<i class="fas fa-tags"></i>
+				Documentation
+			</a>
+			
+		</div>
+		
+		<div class="cover-image">
+			<img alt="Start a project by the README" src="https://thepracticaldev.s3.amazonaws.com/i/x6xpao28ktzva7sinrym.JPG" class="img-responsive">
+		</div>
+		
+		<p>Before start code, describe what you are doing...</p>
+	</div>
+	
+	
+	
+	<div class="list-group-item">
+		<a href="/posts/java-memory-leak-for-jdbc">
+			
+			<h4 class="list-group-item-heading">Java Memory Leak for JDBC</h4>
+			
+			<h6 class="list-group-item-heading">
+				<time datetime="2019-06-03T12:46:08+00:00">
+					June 03, 2019
+				</time>
+			</h6>
+		</a>
+		<div class="tag-container">
+			
+			<a class="label label-default java" href="/tags/#java">
+				<i class="fas fa-tags"></i>
+				Java
+			</a>
+			
+			<a class="label label-default jdbc" href="/tags/#jdbc">
+				<i class="fas fa-tags"></i>
+				JDBC
+			</a>
+			
+			<a class="label label-default memory-leak" href="/tags/#memory-leak">
+				<i class="fas fa-tags"></i>
+				Memory Leak
+			</a>
+			
+			<a class="label label-default garbage-collector" href="/tags/#garbage-collector">
+				<i class="fas fa-tags"></i>
+				Garbage Collector
+			</a>
+			
+		</div>
+		
+		
+		<p>Have you ever used custom ClassLoaders in Java? This is a troubleshooting for whom is using it.</p>
+	</div>
+	
+	
+</div>
+
+<!-- Pagination links -->
+<div class="pagination">
+	
+	<a href="/pag-3">
+		Anterior
+	</a>
+	
+	&nbsp;
+	|
+	&nbsp;
+	<span class="page_number ">
+		Página: 4 de 5
+	</span>
+	&nbsp;
+	|
+	&nbsp;
+	
+	<a href="/pag-5">Próximo</a>
+	
+</div>
+                </article>
+                
+                 
+                <div id="disqus_thread"></div>
+<script>
+    /**
+    *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+    *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables    */
+    /*
+    var disqus_config = function () {
+    this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
+    this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+    };
+    */
+    (function() { // DON'T EDIT BELOW THIS LINE
+    var d = document, s = d.createElement('script');
+    s.src = 'https://notas-do-dia-a-dia-de-um-engenheiro-de-software.disqus.com/embed.js';
+    s.setAttribute('data-timestamp', +new Date());
+    (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+                <!-- Twitter universal website tag code -->
+<script>
+  !function(e,t,n,s,u,a){e.twq||(s=e.twq=function(){s.exe?s.exe.apply(s,arguments):s.queue.push(arguments);
+  },s.version='1.1',s.queue=[],u=t.createElement(n),u.async=!0,u.src='//static.ads-twitter.com/uwt.js',
+  a=t.getElementsByTagName(n)[0],a.parentNode.insertBefore(u,a))}(window,document,'script');
+  // Insert Twitter Pixel ID and Standard Event data below
+  twq('init','o5djb');
+  twq('track','PageView');
+  </script>
+  <!-- End Twitter universal website tag code -->
+            </div>
+        </div>
+    </div>
+ 
+    <footer class="footer">
+	<ul class="footer-links">
+		<li>
+			<div>
+				<script type="text/javascript" src="https://cdnjs.buymeacoffee.com/1.0.0/button.prod.min.js"
+					data-name="bmc-button" data-slug="vepo" data-color="#5F7FFF" data-emoji="" data-font="Cookie"
+					data-text="Buy me a coffee" data-outline-color="#000000" data-font-color="#ffffff"
+					data-coffee-color="#FFDD00"></script>
+			</div>
+		</li>
+		<li>
+			<a href="http://github.com/vepo"> 
+				<i class="fab fa-github fa-inverse fa-3x"></i>
+			</a>
+		</li>
+		<li>
+			<a href="http://www.linkedin.com/in/victorosorio">
+				<i class="fab fa-linkedin-in fa-inverse fa-3x"></i>
+			</a>
+		</li>
+		<li>
+			<a href="https://twitter.com/vepo">
+				<i class="fab fa-twitter fa-inverse fa-3x"></i>
+			</a>
+		</li>
+		<li>&nbsp;</li>
+	</ul>
+</footer>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-166943279-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag() { dataLayer.push(arguments); }
+  gtag('js', new Date());
+
+  gtag('config', 'UA-166943279-1');
+</script> 
+    <script src="/assets/js/adjustments.js" async></script>
+</body>
+
+</html>
